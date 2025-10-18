@@ -1,0 +1,17 @@
+@use '../base' as *;
+
+.button{
+  &__primary {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    background-color: $primary;
+    color: $white;
+    font-family: 12px;
+    transition: all 350ms ease-in-out;
+    @include hover {
+      background-color: $secondary;
+    }
+  }
+}

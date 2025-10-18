@@ -16,8 +16,11 @@
     </head>
     <body class="antialiased">
 
-        asdasdasdsa
-        @yield('content')
+        @include('components.header')
+        
+        <div class="main">
+            @yield('content')
+        </div>
 
     </body>
 </html>

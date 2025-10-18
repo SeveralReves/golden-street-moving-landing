@@ -1,8 +1,8 @@
-@use 'base/reset' as *;
-@use 'base/mixins' as *;
-@use 'base/mq' as *;
-@use 'base/container' as *;
-@use 'base/font' as *;
-@use 'base/display' as *;
-@use 'base/variables' as *;
+// base
+@use 'base' as *;
+
+// components
+@use 'components/buttons' as *;
+@use 'components/header' as *;
+
 @import './app.css';
