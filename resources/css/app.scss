@@ -1,19 +1,8 @@
+@use 'base/reset' as *;
+@use 'base/mixins' as *;
+@use 'base/mq' as *;
+@use 'base/container' as *;
+@use 'base/font' as *;
+@use 'base/display' as *;
+@use 'base/variables' as *;
 @import './app.css';
-
-$primary: #5E17EB;
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: lighten($primary, 45%);
-  color: $primary;
-}
-
-.btn {
-  background-color: $primary;
-  color: #fff;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-
-  &:hover {
-    background-color: darken($primary, 10%);
-  }
-}
