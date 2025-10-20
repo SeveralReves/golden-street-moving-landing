@@ -1,0 +1,120 @@
+@use '../base' as *;
+
+.booking {
+  &__card {
+    width: 100%;
+    max-width: 890px;
+    margin: 32px auto 0;
+    padding: 32px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+    justify-content: start;
+    margin-top: 30px;
+    &--field {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    &--button {
+      align-self: end;
+    }
+    .mx-datepicker {
+      width: 100%;
+    }
+    .form-error {
+      color: red;
+      font-size: 12px;
+    }
+    .multiselect{
+      border: none;
+      &.is-active {
+        border: none;
+        box-shadow: none;
+      }
+      &-option {
+        --ms-option-bg-pointed: #E9B949;
+      }
+    }
+    .address-autocomplete gmp-place-autocomplete {
+      --gmpx-color-surface: #ffffff;
+      --gmpx-color-on-surface: #202124;
+      --gmpx-color-primary: #5E17EB; /* tu morado */
+      --gmpx-color-outline: #dcdcdc;
+      --gmpx-color-on-primary: #ffffff;
+      --gmpx-font-family: "Inter", sans-serif;
+      --gmpx-shape-corner: 8px; /* borde redondeado */
+    }
+
+    gmp-place-autocomplete {
+      width: 100%;
+      border-radius: 10px;
+      appearance: none;
+      height: 40px;
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      --gmpx-color-surface: #f5f5f5;
+      --gmpx-color-on-surface: #1e1e1e;
+      input {
+        color: $black;
+      }
+    }
+    input, .multiselect-wrapper{
+      width: 100%;
+      border-radius: 10px;
+      appearance: none;
+      height: 40px;
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      &::placeholder{
+        opacity: 0.5;
+      }
+      &:focus{
+        border: 1px solid #ccc;
+        outline: none;
+        box-shadow: none;
+      }
+    }
+    &--label {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    &--title {
+      font-size: 1rem;
+    }
+    &--loader {
+      border-radius: 10px;
+      height: 10px;
+      background-color: rgb(187 222 251 / 0.3);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-start;
+      &-bar {
+        height: 100%;
+        background-color: $primary;
+      }
+    }
+  }
+}
+.address-autocomplete :deep(gmp-place-autocomplete) {
+  --gmpx-color-surface: #fff;
+  --gmpx-color-on-surface: #111827;
+  --gmpx-color-outline: #e5e7eb;
+  --gmpx-color-primary: #5E17EB;
+  --gmpx-color-on-primary: #fff;
+  --gmpx-font-family: Inter, system-ui, sans-serif;
+  --gmpx-shape-corner: 10px;
+  width: 100%;
+  display: block;
+}

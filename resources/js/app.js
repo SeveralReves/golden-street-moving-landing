@@ -8,13 +8,16 @@ Alpine.start();
 
 
 // vue
+import { initGoogle } from './lib/google';
+
+initGoogle(import.meta.env.VITE_GOOGLE_MAPS_API_KEY); //
 
 import { createApp } from 'vue'
 
 // Registro perezoso (lazy) por nombre de componente:
 const components = {
   ExampleComponent: () => import('./components/ExampleComponent.vue'),
-  // agrega aquí más islas...
+  Booking: () => import('./components/Booking.vue'),
 }
 
 document.addEventListener('DOMContentLoaded', () => {

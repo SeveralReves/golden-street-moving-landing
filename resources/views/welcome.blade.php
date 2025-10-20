@@ -11,6 +11,16 @@
         ],
     ])
 
+    @include('components.section-booking', [
+        'title' => 'Book Your Move Online',
+        'description' => 'Get a free quote in just a few simple steps.',
+        'button' => [
+            'url' => '#',
+            'title' => 'Book your date now'
+        ],
+        'wp_action' => 'booking'
+    ])
+
 {{-- <div class="container">
     <p>This is the user content</p>
     
