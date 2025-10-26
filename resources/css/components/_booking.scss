@@ -8,6 +8,7 @@
     padding: 32px;
     border-radius: 12px;
     overflow: hidden;
+    background-color: $secondary;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   }
   &__form {
@@ -21,6 +22,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      max-width: 100%;
     }
     &--button {
       align-self: end;
@@ -42,36 +44,38 @@
         --ms-option-bg-pointed: #E9B949;
       }
     }
-    .address-autocomplete gmp-place-autocomplete {
-      --gmpx-color-surface: #ffffff;
-      --gmpx-color-on-surface: #202124;
-      --gmpx-color-primary: #5E17EB; /* tu morado */
-      --gmpx-color-outline: #dcdcdc;
-      --gmpx-color-on-primary: #ffffff;
-      --gmpx-font-family: "Inter", sans-serif;
-      --gmpx-shape-corner: 8px; /* borde redondeado */
-    }
 
-    gmp-place-autocomplete {
-      width: 100%;
-      border-radius: 10px;
-      appearance: none;
-      height: 40px;
-      background-color: #f5f5f5;
-      border: 1px solid #ccc;
-      --gmpx-color-surface: #f5f5f5;
-      --gmpx-color-on-surface: #1e1e1e;
-      input {
-        color: $black;
-      }
+    // gmp-place-autocomplete {
+    //   width: 100%;
+    //   border-radius: 10px;
+    //   appearance: none;
+    //   height: 40px;
+    //   color: $black !important;
+    //   background-color: #f5f5f5;
+    //   border: 1px solid #ccc;
+    //   input {
+    //     color: $black !important;
+    //   }
+    // }
+    .multiselect {
+      border: none;
+      background: transparent;
     }
     input, .multiselect-wrapper{
       width: 100%;
       border-radius: 10px;
       appearance: none;
       height: 40px;
-      background-color: #f5f5f5;
-      border: 1px solid #ccc;
+      // background-color: #f5f5f5;
+      // border: 1px solid #ccc;
+      background-color:  #131314;
+      border: 1px solid #000;
+      color: #fff;
+      &:-internal-autofill-selected {
+        background-color:  #131314 !important;
+        border: 1px solid #000;
+        color: #fff !important;
+      }
       &::placeholder{
         opacity: 0.5;
       }
@@ -84,6 +88,7 @@
     &--label {
       font-weight: 600;
       font-size: 1rem;
+      color: $white;
     }
   }
   &__header {

@@ -125,7 +125,7 @@ function onSubmit(values) {
 
             <!-- Origin Address -->
             <div class="booking__form--field">
-              <label for="org_address">Origin Address</label>
+              <label for="org_address" class="booking__form--label">Origin Address</label>
               <Field name="org_address" v-slot="{ value, errorMessage, setValue, setTouched }">
                 <AddressAutocomplete
                   :api-key="GOOGLE_API_KEY"
@@ -142,13 +142,14 @@ function onSubmit(values) {
 
             <!-- Destination Address -->
             <div class="booking__form--field">
-              <label for="end_address">End Address</label>
+              <label for="end_address" class="booking__form--label">End Address</label>
               <Field name="end_address" v-slot="{ value, errorMessage, setValue, setTouched }">
                 <AddressAutocomplete
                   :api-key="GOOGLE_API_KEY"
                   :model-value="value"
                   :countries="['us','ve','nl']"
                   placeholder="Destination address"
+                  color="red"
                   @update:modelValue="setValue"
                   @blur="() => setTouched(true)"
                 />
@@ -177,7 +178,7 @@ function onSubmit(values) {
             </div>
 
             <div class="booking__form--field">
-              <label for="schedule">Schedule</label>
+              <label for="schedule" class="booking__form--label">Schedule</label>
 
               <Field name="schedule" v-slot="{ value, errorMessage, setValue, setTouched }">
                 <Multiselect

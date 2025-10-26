@@ -3,6 +3,7 @@
 .section{
   &__booking {
     padding: 110px 0;
+    background-color: $blue;
     &--title {
       max-width: 750px;
       text-align: center;
@@ -13,6 +14,7 @@
       margin: 10px auto 0;
       text-align: center;
       max-width: 550px;
+      color: $white;
     }
   }
 }

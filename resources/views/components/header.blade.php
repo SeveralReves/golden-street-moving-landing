@@ -1,5 +1,5 @@
 @php
-    $logo = Vite::asset('resources/images/svr.png');
+    $logo = Vite::asset('resources/images/logo-1.png');
 
     $menu = [
       [
@@ -36,7 +36,9 @@
 
 <header class="header">
   <div class="container header__container">
-    <img src="{{ $logo }}" alt="logo header" title="logo header" loading="lazy" class="header__logo" width="160" height="40">
+    <a href="/" class="header__logo-link">
+      <img src="{{ $logo }}" alt="logo header" title="logo header" loading="lazy" class="header__logo" width="160" height="40">
+    </a>
     <nav class="header__nav">
       <ul class="header__ul">
         @foreach ($menu as $item)

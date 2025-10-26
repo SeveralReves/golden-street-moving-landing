@@ -124,5 +124,5 @@ watch(() => props.modelValue, (v) => {
 </template>
 
 <style scoped>
-.input-text { width: 100%; min-height: 42px; display: block; }
+.input-text { width: 100%; min-height: 42px; display: block; color: red;}
 </style>
