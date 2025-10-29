@@ -34,11 +34,11 @@ const wbar = ref({
 
 const scheduleOptions = ref([
   {
-    label: 'Morning',
+    label: 'Morning (8am - 12pm)',
     value: 'morning',
   },
   {
-    label: 'Afternoon',
+    label: 'Afternoon (1pm - 5pm)',
     value: 'afternoon',
   },
 ])

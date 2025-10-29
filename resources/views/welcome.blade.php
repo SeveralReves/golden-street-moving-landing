@@ -84,6 +84,100 @@
         'wp_action' => 'booking'
     ])
 
+    @include('components.section-faq', [
+        'title' => 'Frequently Asked Questions',
+        'description' => "Have questions? We've got answers.",
+        'cta' => [
+            'text' => 'Contact Us',
+            'url'  => '#contact'
+        ],
+        'faqs' => [
+            [
+            'q' => 'How is the price for my move determined?',
+            'a' => 'Our pricing is based on an hourly rate which includes the truck, equipment and moving crew. We give you a detailed quote upfront with no hidden fees.'
+            ],
+            [
+            'q' => 'How far in advance should I schedule my move?',
+            'a' => 'We recommend 2–4 weeks in advance to secure your preferred date. For peak season, book earlier.'
+            ],
+            [
+            'q' => 'What is included in your standard moving service?',
+            'a' => 'Truck, crew, loading/unloading, basic protection blankets, and standard furniture assembly/disassembly.'
+            ],
+            [
+            'q' => 'What kind of insurance coverage do you offer?',
+            'a' => 'Basic valuation is included. Full-value protection is available upon request.'
+            ],
+            [
+            'q' => 'What is your policy on rescheduling or cancellation?',
+            'a' => 'You can reschedule up to 48 hours before the job without fees. See full policy in your quote.'
+            ],
+        ]
+    ])
+
+    @include('components.section-reviews', [
+        'title' => "Don't just take our word for it",
+        'description' => "See what our happy customers say about their moving experience.",
+        'cta' => [
+            'text' => 'Book Your Move Now',
+            'url'  => '#contact'
+        ],
+        'reviews' => [
+            [
+                'name' => 'John Doe',
+                'avatar' => Vite::asset('resources/images/cards/review-1.png'),
+                'rating' => 5,
+                'text' => "The movers were professional and friendly. Highly recommend!",
+                'source' => 'Google',
+                'url' => 'https://g.page/tu-listing/review', // opcional
+                'date' => '2025-08-02'
+            ],
+            [
+                'name' => 'Jane Smith',
+                'avatar' => Vite::asset('resources/images/cards/review-2.png'),
+                'rating' => 4.5,
+                'text' => "Everything arrived in perfect condition. Great service.",
+                'source' => 'Google',
+                'url' => 'https://g.page/tu-listing/review',
+                'date' => '2025-07-15'
+            ],
+            [
+                'name' => 'Peter Jones',
+                'avatar' => Vite::asset('resources/images/cards/review-3.png'),
+                'rating' => 4,
+                'text' => "Smooth process from quote to final delivery.",
+                'source' => 'Google',
+                'url' => 'https://g.page/tu-listing/review',
+                'date' => '2025-06-20'
+            ],
+            [
+                'name' => 'Sarah Lee',
+                'avatar' => Vite::asset('resources/images/cards/review-4.png'),
+                'rating' => 5,
+                'text' => "Incredibly careful with my fragile items. A+",
+                'source' => 'Google',
+                'url' => 'https://g.page/tu-listing/review',
+                'date' => '2025-05-11'
+            ],
+            [
+                'name' => 'John Doe',
+                'avatar' => Vite::asset('resources/images/cards/review-1.png'),
+                'rating' => 5,
+                'text' => "The movers were professional and friendly. Highly recommend!",
+                'source' => 'Google',
+                'url' => 'https://g.page/tu-listing/review', // opcional
+                'date' => '2025-08-02'
+            ],
+        ],
+        // Opcional: controla el slider
+        'slider' => [
+            'autoplay' => true,
+            'speed' => 4000
+        ]
+        ])
+
+
+
 {{-- <div class="container">
     <p>This is the user content</p>
     

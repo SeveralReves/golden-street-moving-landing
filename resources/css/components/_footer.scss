@@ -1,0 +1,81 @@
+@use '../base' as *;
+
+.footer {
+  background: $secondary;
+  color: #fff;
+  padding: 3rem 0;
+  font-size: 0.95rem;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 2rem;
+  }
+
+  &__logo img {
+    height: 100px;
+  }
+
+  &__nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
+  &__socials {
+    display: flex;
+    a {
+      margin-left: 1rem;
+      color: #fff;
+      svg {
+        width: 22px;
+        height: 22px;
+        fill: currentColor;
+        transition: color 0.3s;
+      }
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: #38B6FF;
+    font-size: 0.85rem;
+    p {
+      color: $white;
+    }
+    a {
+      color: $primary;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

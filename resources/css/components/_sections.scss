@@ -46,4 +46,200 @@
       margin-top: 42px;
     }
   }
+  &__faq {
+    padding: 80px 0;
+
+    &--title {
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    &--description {
+      margin: 10px auto 0;
+      text-align: center;
+      max-width: 620px;
+      color: rgba(0,0,0,.7);
+    }
+
+    &--accordion {
+      margin: 36px auto 0;
+      max-width: 900px;
+      background: $white;
+      border-radius: 18px;
+      box-shadow: 0 16px 50px rgba(0,0,0,.06);
+      padding: 8px 0;
+    }
+
+    &--cta {
+      margin-top: 40px;
+      text-align: center;
+
+      &-text {
+        color: rgba(0,0,0,.55);
+        margin-bottom: 14px;
+      }
+    }
+  }
+  &__reviews {
+    padding: 80px 0;
+    background: rgba(0,0,0,.03);
+    border-radius: 18px;
+
+    &--title {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    &--description {
+      margin: 10px auto 0;
+      text-align: center;
+      max-width: 680px;
+      color: rgba(0,0,0,.65);
+    }
+
+    &--slider {
+      margin: 36px auto 0;
+      max-width: 1100px;
+    }
+
+    &--cta {
+      margin-top: 28px;
+      text-align: center;
+    }
+  }
+}
+
+/* Items */
+.faq__item {
+  border-top: 1px solid rgba(0,0,0,.08);
+
+  &:first-child {
+    border-top: 0;
+  }
+}
+
+.faq__question {
+  list-style: none; /* quita el triángulo por defecto de <summary> */
+  cursor: pointer;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  font-weight: 700;
+
+  /* foco accesible */
+  &:focus {
+    // outline: 2px solid $primary;
+    // outline-offset: 2px;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+
+  /* icono */
+  .faq__chevron {
+    transition: transform .2s ease;
+    flex: 0 0 auto;
+    opacity: .85;
+  }
+}
+
+/* Cuando está abierto, rota el chevron */
+.faq__item[open] .faq__chevron {
+  transform: rotate(180deg);
+}
+
+/* Respuesta */
+.faq__answer {
+  padding: 0 22px 18px 22px;
+  color: rgba(0,0,0,.75);
+
+  p { margin: 0; }
+}
+
+.review__card {
+  background: $white;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  height: 100%;
+  margin: 10px; /* separación interna de slick */
+
+  display: grid;
+  gap: 14px;
+
+  .review__header {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .review__avatar {
+    width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
+    img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  }
+
+  .review__name { font-weight: 700; margin: 0; font-size: 1rem; }
+
+  .review__source {
+    font-size: 0.9rem;
+    color: rgba(0,0,0,.55);
+  }
+
+  .review__stars {
+    display: flex; align-items: center; gap: 4px; margin: 4px 0;
+    .star { line-height: 0; display: inline-flex; }
+    .star--full { color: #fbbc04; }  /* Google gold */
+    .star--half { color: #fbbc04; }
+    .star--empty { color: rgba(0,0,0,.25); }
+  }
+
+  .review__text { color: rgba(0,0,0,.75); margin: 0; }
+
+  .review__link {
+    font-size: 0.9rem;
+    color: $primary;
+    @include hover { text-decoration: underline; }
+  }
+}
+
+/* Slider Nav */
+.reviews__nav {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 10px;
+  max-width: 1100px;
+  margin: 10px auto 0;
+}
+
+.reviews__arrow {
+  background: $white;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  cursor: pointer;
+
+  @include hover { background: rgba(0,0,0,.03); }
+}
+
+.slick-dots {
+  display: flex !important;
+  justify-content: center;
+  gap: 8px;
+
+  li { margin: 0; }
+  button {
+    width: 8px; height: 8px; border-radius: 999px; padding: 0;
+    background: rgba(0,0,0,.2); text-indent: -9999px; border: 0;
+  }
+  .slick-active button {
+    background: $primary; width: 16px;
+  }
 }
