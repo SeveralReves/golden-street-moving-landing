@@ -32,4 +32,18 @@
       margin-top: 42px;
     }
   }
+  &__services {
+    padding: 80px 0;
+    &--title {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+    &--content {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 42px;
+    }
+  }
 }

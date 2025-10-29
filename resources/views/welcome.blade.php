@@ -32,6 +32,48 @@
         ]
     ])
 
+    @include('components.section-services', [
+        'title' => 'Our Moving Services',
+        'cards' => [
+            [
+                'title' => 'Residential Moving',
+                'description' => 'Seamless home transitions, handled with care and precision by our expert team.',
+                'image' => Vite::asset('resources/images/cards/services-1.jpeg'),
+                'button' => [
+                    'title' => 'Request this service',
+                    'url' => '#'
+                ]
+            ],
+            [
+                'title' => 'Corporate Moving',
+                'description' => 'Efficiency and minimal business disruption for your office relocation.',
+                'image' => Vite::asset('resources/images/cards/services-2.png'),
+                'button' => [
+                    'title' => 'Request this service',
+                    'url' => '#'
+                ]
+            ],
+            [
+                'title' => 'Packing Services',
+                'description' => 'Professional packing and unpacking to save you time and protect your belongings.',
+                'image' => Vite::asset('resources/images/cards/services-3.png'),
+                'button' => [
+                    'title' => 'Request this service',
+                    'url' => '#'
+                ]
+            ],
+            [
+                'title' => 'Storage Solutions',
+                'description' => 'Secure, flexible, and climate-controlled storage options for any need.',
+                'image' => Vite::asset('resources/images/cards/services-4.png'),
+                'button' => [
+                    'title' => 'Request this service',
+                    'url' => '#'
+                ]
+            ],
+        ]
+    ])
+
     @include('components.section-booking', [
         'title' => 'Book Your Move Online',
         'description' => 'Get a free quote in just a few simple steps.',
