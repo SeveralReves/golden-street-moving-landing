@@ -17,4 +17,19 @@
       color: $white;
     }
   }
+  &__benefits {
+    padding: 80px 0;
+    background-color: rgb(250, 249, 248);
+    &--title {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+    &--content {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 30px;
+      margin-top: 42px;
+    }
+  }
 }

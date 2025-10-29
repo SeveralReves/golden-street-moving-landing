@@ -199,7 +199,7 @@ function onSubmit(values) {
               </Field>
             </div>
 
-            <button class="booking__form--button button__primary" type="submit">Submit</button>
+            <button class="booking__form--button button__primary" type="submit">Continue</button>
           </Form>
         </div>
       </div>
