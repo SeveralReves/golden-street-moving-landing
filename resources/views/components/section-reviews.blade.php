@@ -7,16 +7,16 @@
 <section class="section__reviews" aria-labelledby="reviews-title">
   <div class="container section__reviews--container">
     @if (!empty($title ?? null))
-      <h2 id="reviews-title" class="section__reviews--title">{{ $title }}</h2>
+      <h2 id="reviews-title" class="section__reviews--title"  data-aos="fade-up" data-aos-duration="1500">{{ $title }}</h2>
     @endif
 
     @if (!empty($description ?? null))
-      <p class="section__reviews--description">{{ $description }}</p>
+      <p class="section__reviews--description"  data-aos="fade-up" data-aos-duration="1500">{{ $description }}</p>
     @endif
 
     {{-- Slider --}}
     @if ($count)
-      <div class="section__reviews--slider js-reviews-slider">
+      <div class="section__reviews--slider js-reviews-slider"  data-aos="fade-up" data-aos-duration="1500">
         @foreach ($items as $item)
           @php
             $rating = floatval($item['rating'] ?? 0);

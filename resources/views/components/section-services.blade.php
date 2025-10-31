@@ -1,13 +1,13 @@
 <section class="section__services">
   <div class="container section__services--container">
     @if (isset($title) && !empty($title))
-      <h2 class="section__services--title">
+      <h2 class="section__services--title"  data-aos="fade-up" data-aos-duration="1500">
         {{ $title }}
       </h2>
     @endif
     <div class="section__services--content">
       @foreach ($cards as $item)
-        <article class="card__service">
+        <article class="card__service"  data-aos="fade-up" data-aos-duration="1500">
           <picture class="card__service--picture">
             <img src="{{ $item['image'] }}" alt="image {{ $item['title'] }}" title="image {{ $item['title'] }}" class="card__service--image">
           </picture>

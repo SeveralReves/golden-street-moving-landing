@@ -1,7 +1,7 @@
 <section class="section__faq" aria-labelledby="faq-title">
   <div class="container section__faq--container" data-faq-single="true">
     @if (!empty($title ?? null))
-      <h2 id="faq-title" class="section__faq--title">{{ $title }}</h2>
+      <h2 id="faq-title" class="section__faq--title"  data-aos="fade-up" data-aos-duration="1500">{{ $title }}</h2>
     @endif
 
     @if (!empty($description ?? null))
@@ -16,7 +16,7 @@
             $aid = 'faq-a-' . $i;
           @endphp
 
-          <details class="faq__item" @if($i===0) open @endif role="listitem">
+          <details class="faq__item" @if($i===0) open @endif role="listitem"  data-aos="fade-up" data-aos-duration="1500">
             <summary
               class="faq__question"
               id="{{ $qid }}"

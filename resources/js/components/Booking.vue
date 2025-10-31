@@ -102,14 +102,14 @@ function onSubmit(values) {
     <div class="booking__container container">
       <div class="booking__card">
         <div class="booking__header">
-          <h3 class="booking__header--title">
+          <h3 class="booking__header--title"  data-aos="fade-up" data-aos-duration="1500">
             Step {{ step }} of 3
           </h3>
           <div class="booking__header--loader">
             <div class="booking__header--loader-bar" :style="`width: ${wbar[step]}`"></div>
           </div>
         </div>
-        <div class="booking__content">
+        <div class="booking__content"  data-aos="fade-up" data-aos-duration="1500">
           <Form @submit="onSubmit" :validation-schema="schema" class="booking__form">
             <div class="booking__form--field">
               <label for="name" class="booking__form--label">Your Name</label>

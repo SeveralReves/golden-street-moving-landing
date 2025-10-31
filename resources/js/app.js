@@ -14,6 +14,8 @@ import $ from 'jquery';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 window.$ = $;
 window.jQuery = $;
@@ -32,6 +34,14 @@ const components = {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    AOS.init({
+      offset: 120, 
+      delay: 0, 
+      duration: 600,
+      easing: 'ease', 
+      once: true, 
+    });
   // Busca todos los nodos Blade que pidan un componente Vue
   document.querySelectorAll('[data-vue]').forEach(async (el) => {
     const name = el.getAttribute('data-vue')
