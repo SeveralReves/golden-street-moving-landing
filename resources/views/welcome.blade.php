@@ -17,17 +17,17 @@
             [
                 'title' => 'Fully Insured & Secure',
                 'description' => 'All moves are protected and items are handled with the utmost care.',
-                'icon' => Vite::asset('resources/images/icons/shield.svg')
+                'icon' => asset('/images/icons/shield.svg')
             ],
             [
                 'title' => 'Always On Time',
                 'description' => 'Reliable and punctual service you can count on, every time.',
-                'icon' => Vite::asset('resources/images/icons/clock.svg')
+                'icon' => asset('/images/icons/clock.svg')
             ],
             [
                 'title' => 'Friendly, Professional Team',
                 'description' => 'Our trained and courteous staff are here to help make your move a breeze.',
-                'icon' => Vite::asset('resources/images/icons/smile-outlined.svg')
+                'icon' => asset('/images/icons/smile-outlined.svg')
             ],
         ]
     ])
@@ -38,7 +38,7 @@
             [
                 'title' => 'Residential Moving',
                 'description' => 'Seamless home transitions, handled with care and precision by our expert team.',
-                'image' => Vite::asset('resources/images/cards/services-1.jpeg'),
+                'image' => asset('/images/cards/services-1.jpeg'),
                 'button' => [
                     'title' => 'Request this service',
                     'url' => '#'
@@ -47,7 +47,7 @@
             [
                 'title' => 'Corporate Moving',
                 'description' => 'Efficiency and minimal business disruption for your office relocation.',
-                'image' => Vite::asset('resources/images/cards/services-2.png'),
+                'image' => asset('/images/cards/services-2.png'),
                 'button' => [
                     'title' => 'Request this service',
                     'url' => '#'
@@ -56,7 +56,7 @@
             [
                 'title' => 'Packing Services',
                 'description' => 'Professional packing and unpacking to save you time and protect your belongings.',
-                'image' => Vite::asset('resources/images/cards/services-3.png'),
+                'image' => asset('/images/cards/services-3.png'),
                 'button' => [
                     'title' => 'Request this service',
                     'url' => '#'
@@ -65,7 +65,7 @@
             [
                 'title' => 'Storage Solutions',
                 'description' => 'Secure, flexible, and climate-controlled storage options for any need.',
-                'image' => Vite::asset('resources/images/cards/services-4.png'),
+                'image' => asset('/images/cards/services-4.png'),
                 'button' => [
                     'title' => 'Request this service',
                     'url' => '#'
@@ -125,7 +125,7 @@
         'reviews' => [
             [
                 'name' => 'John Doe',
-                'avatar' => Vite::asset('resources/images/cards/review-1.png'),
+                'avatar' => asset('/images/cards/review-1.png'),
                 'rating' => 5,
                 'text' => "The movers were professional and friendly. Highly recommend!",
                 'source' => 'Google',
@@ -134,7 +134,7 @@
             ],
             [
                 'name' => 'Jane Smith',
-                'avatar' => Vite::asset('resources/images/cards/review-2.png'),
+                'avatar' => asset('/images/cards/review-2.png'),
                 'rating' => 4.5,
                 'text' => "Everything arrived in perfect condition. Great service.",
                 'source' => 'Google',
@@ -143,7 +143,7 @@
             ],
             [
                 'name' => 'Peter Jones',
-                'avatar' => Vite::asset('resources/images/cards/review-3.png'),
+                'avatar' => asset('/images/cards/review-3.png'),
                 'rating' => 4,
                 'text' => "Smooth process from quote to final delivery.",
                 'source' => 'Google',
@@ -152,7 +152,7 @@
             ],
             [
                 'name' => 'Sarah Lee',
-                'avatar' => Vite::asset('resources/images/cards/review-4.png'),
+                'avatar' => asset('/images/cards/review-4.png'),
                 'rating' => 5,
                 'text' => "Incredibly careful with my fragile items. A+",
                 'source' => 'Google',
@@ -161,7 +161,7 @@
             ],
             [
                 'name' => 'John Doe',
-                'avatar' => Vite::asset('resources/images/cards/review-1.png'),
+                'avatar' => asset('/images/cards/review-1.png'),
                 'rating' => 5,
                 'text' => "The movers were professional and friendly. Highly recommend!",
                 'source' => 'Google',

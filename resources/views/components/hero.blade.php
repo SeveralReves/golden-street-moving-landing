@@ -1,5 +1,5 @@
 @php
-  $image = Vite::asset('resources/images/hero-1.jpeg');
+  $image = asset('/images/hero-1.jpeg');
     
 @endphp
 

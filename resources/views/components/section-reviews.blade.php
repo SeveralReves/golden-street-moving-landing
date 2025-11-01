@@ -28,7 +28,7 @@
             <meta itemprop="datePublished" content="{{ $item['date'] ?? '' }}">
             <div class="review__header">
               <div class="review__avatar">
-                <img loading="lazy" src="{{ $item['avatar'] ?? Vite::asset('resources/images/avatars/placeholder.jpg') }}"
+                <img loading="lazy" src="{{ $item['avatar'] ?? asset('/images/avatars/placeholder.jpg') }}"
                      alt="{{ $item['name'] ?? 'Reviewer' }}" />
               </div>
               <div class="review__person">

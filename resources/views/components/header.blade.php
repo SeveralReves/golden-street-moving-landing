@@ -1,5 +1,5 @@
 @php
-    $logo = Vite::asset('resources/images/logo-1.png');
+    $logo = asset('/images/logo-1.png');
 
     $menu = [
       [
