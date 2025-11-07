@@ -44,21 +44,39 @@ h1, h2, h3, h4, h5, h6 {
 /* Tamaños adaptativos */
 h1 {
   font-size: clamp(2.2rem, 5vw, 3.2rem);
+  @media (max-width: 980px) {
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+  }
 }
 h2 {
   font-size: clamp(1.8rem, 4vw, 2.6rem);
+  @media (max-width: 980px) {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+  }
 }
 h3 {
   font-size: clamp(1.6rem, 3.5vw, 2rem);
+  @media (max-width: 980px) {
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+  }
 }
 h4 {
   font-size: 1.4rem;
+  @media (max-width: 980px) {
+    font-size: 1.2rem;
+  }
 }
 h5 {
   font-size: 1.2rem;
+  @media (max-width: 980px) {
+    font-size: 1rem;
+  }
 }
 h6 {
   font-size: 1rem;
+  @media (max-width: 980px) {
+    font-size: 0.9rem;
+  }
 }
 
 /* ==============================
@@ -70,10 +88,16 @@ p {
   font-size: 1rem;
   font-weight: 400;
   color: $color-text;
+  @media (max-width: 980px) {
+    font-size: 0.95rem;
+  }
 
   &.lead {
     font-size: 1.125rem;
     font-weight: 500;
+    @media (max-width: 980px) {
+      font-size: 1rem;
+    }
   }
 }
 

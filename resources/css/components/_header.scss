@@ -14,10 +14,18 @@
     align-items: center;
     gap: 30px;
   }
+  &__logo-link img {
+    @media (max-width: 1025px) {
+      width: 110px;
+    }
+  }
   &__ul {
     display: flex;
     align-items: center;
     gap: 30px;
+    @media (max-width: 1025px) {
+      display: none;
+    }
   }
   &__link {
     font-weight: 700;

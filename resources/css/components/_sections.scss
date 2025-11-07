@@ -30,7 +30,11 @@
       grid-template-columns: repeat(3,1fr);
       gap: 30px;
       margin-top: 42px;
+      @media (max-width: 1025px) {
+        grid-template-columns: repeat(1,1fr);
+      }
     }
+
   }
   &__services {
     padding: 80px 0;
@@ -44,6 +48,11 @@
       justify-content: center;
       gap: 30px;
       margin-top: 42px;
+
+      @media (max-width: 1025px) {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   }
   &__faq {

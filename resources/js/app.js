@@ -93,9 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
       nextArrow: $('.reviews__arrow--next'),
       autoplay: false,
       responsive: [
-        { breakpoint: 1280, settings: { slidesToShow: 3 } },
-        { breakpoint: 992,  settings: { slidesToShow: 2 } },
-        { breakpoint: 576,  settings: { slidesToShow: 1 } },
+        { breakpoint: 1280, settings: { slidesToShow: 1 } },
+        // { breakpoint: 992,  settings: { slidesToShow: 2 } },
+        // { breakpoint: 576,  settings: { slidesToShow: 1 } },
       ]
     });
     

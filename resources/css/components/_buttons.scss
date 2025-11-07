@@ -8,10 +8,13 @@
     font-family: 'Montserrat', sans-serif;
     background-color: $primary;
     color: $white;
-    font-family: 12px;
+    font-size: 16px;
     transition: all 350ms ease-in-out;
     @include hover {
       background-color: $secondary;
+    }
+    @media (max-width: 1025px) {
+      font-size: 12px;
     }
   }
 }

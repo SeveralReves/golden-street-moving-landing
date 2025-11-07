@@ -31,8 +31,8 @@
           </svg>
         </a>
 
-        <a href="https://www.linkedin.com/company/tu-pagina" aria-label="LinkedIn" class="icon">
-          {{-- LinkedIn --}}
+        {{-- <a href="https://www.linkedin.com/company/tu-pagina" aria-label="LinkedIn" class="icon">
+          LinkedIn
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
             <rect x="6.1" y="9.8" width="2.6" height="8.1" fill="currentColor"/>
@@ -42,19 +42,19 @@
         </a>
 
         <a href="https://x.com/tu-pagina" aria-label="X (Twitter)" class="icon">
-          {{-- X --}}
+          X
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
             <path d="M4 4l16 16M20 4L4 20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
           </svg>
-        </a>
+        </a> --}}
 
-        <a href="https://www.youtube.com/@tu-canal" aria-label="YouTube" class="icon">
-          {{-- YouTube --}}
+        {{-- <a href="https://www.youtube.com/@tu-canal" aria-label="YouTube" class="icon">
+          YouTube
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
             <rect x="2.5" y="6.5" width="19" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
             <path d="M11 10l4.8 2-4.8 2V10z" fill="currentColor"/>
           </svg>
-        </a>
+        </a> --}}
 
         <a href="https://wa.me/0000000000" aria-label="WhatsApp" class="icon">
           {{-- WhatsApp --}}

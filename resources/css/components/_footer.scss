@@ -7,6 +7,7 @@
   font-size: 0.95rem;
 
   .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -19,6 +20,11 @@
     justify-content: space-between;
     margin-bottom: 2rem;
     gap: 2rem;
+    @media (max-width: 1025px) {
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+    }
   }
 
   &__logo img {
@@ -69,6 +75,9 @@
     font-size: 0.85rem;
     p {
       color: $white;
+      @media (max-width: 1025px) {
+        text-align: center;
+      }
     }
     a {
       color: $primary;
