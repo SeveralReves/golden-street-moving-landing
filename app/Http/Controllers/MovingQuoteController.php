@@ -69,4 +69,19 @@ class MovingQuoteController extends Controller
             'quote' => $quote
         ], 201);
     }
+    public function update(Request $request, MovingQuote $movingQuote)
+    {
+        // Validamos solo el status, porque es lo que viene del modal
+        $data = $request->validate([
+            'status' => 'required|string|in:pending,in_review,quoted,closed,cancelled',
+        ]);
+
+        $movingQuote->status = $data['status'];
+        $movingQuote->save();
+
+        return response()->json([
+            'message' => 'Quote status updated successfully.',
+            'quote'   => $movingQuote,
+        ]);
+    }
 }

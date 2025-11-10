@@ -16,6 +16,10 @@
     @media (max-width: 1025px) {
       font-size: 12px;
     }
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
   }
   &__secondary {
     padding: 8px 16px;

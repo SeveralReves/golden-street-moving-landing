@@ -31,6 +31,7 @@ import { createApp } from 'vue'
 const components = {
   ExampleComponent: () => import('./components/ExampleComponent.vue'),
   Booking: () => import('./components/Booking.vue'),
+  BookingTable: () => import('./components/BookingTable.vue'),
 }
 
 document.addEventListener('DOMContentLoaded', () => {
