@@ -115,6 +115,10 @@
         ]
     ])
 
+    @include('components.banner', [
+        'title' => 'Out-of-state transfers',
+        'description' => 'Enjoy complete coverage, real-time tracking, and the peace of mind that your belongings are in good hands.'
+    ])
     @include('components.section-reviews', [
         'title' => "Don't just take our word for it",
         'description' => "See what our happy customers say about their moving experience.",

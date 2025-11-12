@@ -98,6 +98,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // { breakpoint: 992,  settings: { slidesToShow: 2 } },
         // { breakpoint: 576,  settings: { slidesToShow: 1 } },
       ]
+
+    });
+    const $sliderGallery = $('.js-gallery-slider');
+    if (!$sliderGallery.length || typeof $.fn.slick !== 'function') return;
+
+    $sliderGallery.slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      infinite: true,
+      arrows: false,
+      dots: false,
+      fade: true,
+      autoplaySpeed: 5000,
+      speed: 1000,
+      autoplay: true,
     });
     
 })
