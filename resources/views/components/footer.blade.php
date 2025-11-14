@@ -11,18 +11,19 @@
           <li><a href="#about">About Us</a></li>
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="/legals">Terms &amp; Conditions</a></li>
+          <li><a href="/legals">Privacy Policy</a></li>
         </ul>
       </nav>
 
       <div class="footer__socials">
-        <a href="https://facebook.com/tu-pagina" aria-label="Facebook" class="icon">
-          {{-- Facebook --}}
+        <!-- <a href="https://facebook.com/tu-pagina" aria-label="Facebook" class="icon">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
             <path d="M13.5 21v-7h2.6l.4-3h-3v-1.9c0-.9.3-1.5 1.6-1.5H16V4.1C15.7 4 14.8 4 13.9 4 11.6 4 10 5.4 10 8.1V11H7.5v3H10v7h3.5Z"/>
           </svg>
-        </a>
+        </a> -->
 
-        <a href="https://instagram.com/tu-pagina" aria-label="Instagram" class="icon">
+        <a href="https://www.instagram.com/goldenstreets_moving?igsh=b2R0aWxkdWUxcm4x&utm_source=qr" aria-label="Instagram" class="icon">
           {{-- Instagram --}}
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -56,7 +57,7 @@
           </svg>
         </a> --}}
 
-        <a href="https://wa.me/0000000000" aria-label="WhatsApp" class="icon">
+        <a href="https://wa.me/+17705899512" aria-label="WhatsApp" class="icon">
           {{-- WhatsApp --}}
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
             <path d="M7 19l-2.4.7.7-2.3A8 8 0 1119.2 16 8 8 0 017 19Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -69,7 +70,7 @@
 
     <div class="footer__bottom">
       <p>© {{ date('Y') }} Golden Street Moving Company. All rights reserved.</p>
-      <p>Developed by <a href="https://severalreves.com" target="_blank">Severalreves</a></p>
+      <p>Developed by <a href="https://severalreves.lat" target="_blank">Severalreves</a></p>
     </div>
   </div>
 </footer>

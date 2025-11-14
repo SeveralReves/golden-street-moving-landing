@@ -10,6 +10,7 @@
 @use 'components/booking' as *;
 @use 'components/cards' as *;
 @use 'components/banner' as *;
+@use 'components/error' as *;
 
 /* Añade espacio entre slides */
 .slick-slide {

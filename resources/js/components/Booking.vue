@@ -8,6 +8,8 @@ import Multiselect from '@vueform/multiselect'
 import '@vueform/multiselect/themes/default.css'
 import AddressAutocomplete from './AddressAutocomplete.vue'
 import axios from 'axios'
+import Swal from 'sweetalert2' 
+
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 

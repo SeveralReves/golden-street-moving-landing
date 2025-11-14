@@ -1,0 +1,27 @@
+@use '../base' as *;
+
+.error {
+    padding: 80px 0;
+    @media (max-width: 1025px) {
+        padding: 40px 0 80px;
+    }
+    &__image {
+        max-width: 100%;
+        @media (max-width: 1025px) {
+            max-width: 80%;
+        }
+    }
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+    }
+    &__title {
+        font-size: 72px;
+        text-align: center;
+        @media (max-width: 1025px) {
+            font-size: 45px;
+        }
+    }
+}

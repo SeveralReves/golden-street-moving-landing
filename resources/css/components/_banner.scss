@@ -25,13 +25,16 @@
     flex: 1 1 400px;
     z-index: 1;
     color: #fff;
+    @media (max-width: 1025px) {
+        flex: 1;
+    }
 }
 
 .banner__title {
-    font-size: 2.5rem;
+    // font-size: 2.5rem;
     line-height: 1.2;
     margin: 0 0 10px;
-    font-family: 'Orbitron', sans-serif;
+    // font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
 }
 
@@ -47,12 +50,14 @@
     text-align: right;
     width: 600px;
     height: 450px;
+    max-width: 100%;
 }
 
 .banner__image img {
     width: 600px;
     height: 450px;
     object-fit: cover;
+    max-width: 100%;
     max-width: 100%;
     // animation: float 4s ease-in-out infinite;
     filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
