@@ -118,11 +118,24 @@ function goBack() {
 async function onSubmit(values) {
   try {
     const res = await axios.post('/api/moving-quotes', values)
-    console.log('Quote saved:', res.data)
-    alert('Your quote request was sent successfully!')
+    if (Swal) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Your quote request was sent successfully!',
+        timer: 2000,
+        showConfirmButton: false,
+      })
+    }
   } catch (e) {
     console.error(e)
-    alert('There was a problem sending your request.')
+    if (Swal) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: e.response?.data?.message || 'There was a problem sending your request.',
+      })
+    }
   }
 }
 

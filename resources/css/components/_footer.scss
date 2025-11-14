@@ -21,6 +21,7 @@
     margin-bottom: 2rem;
     gap: 2rem;
     @media (max-width: 1025px) {
+      margin-bottom: 1rem;
       flex-direction: column;
       justify-content: center;
       gap: 1rem;
@@ -31,25 +32,37 @@
     height: 100px;
   }
 
-  &__nav ul {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-      &:hover {
-        color: $primary;
+  &__nav{
+    @media (max-width: 1025px) {
+      align-self: flex-start;
+    }
+    ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      @media (max-width: 1025px) {
+        flex-direction: column;
+      }
+  
+      a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+        &:hover {
+          color: $primary;
+        }
       }
     }
-  }
+
+  } 
 
   &__socials {
     display: flex;
+    @media (max-width: 1025px) {
+      margin-top: 2rem;
+    }
     a {
       margin-left: 1rem;
       color: #fff;

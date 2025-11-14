@@ -58,8 +58,8 @@ const saveStatus = async () => {
     if (Swal) {
       Swal.fire({
         icon: 'success',
-        title: 'Actualizado',
-        text: 'El estado se actualizó correctamente.',
+        title: 'Success',
+        text: 'The status was successfully updated.',
         timer: 2000,
         showConfirmButton: false,
       })
@@ -72,7 +72,7 @@ const saveStatus = async () => {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error.response?.data?.message || 'No se pudo actualizar el estado.',
+        text: error.response?.data?.message || 'The status could not be updated.',
       })
     }
   }
