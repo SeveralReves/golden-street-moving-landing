@@ -20,9 +20,11 @@
         </p>  
       @endif
       @if (isset($button['url']) && !empty($button['url']))
-        <a href="{{ $button['url'] }}" title="{{ $button['title'] ?? 'Ver más' }}" class="hero__button button__primary" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1500">
-          {{ $button['title'] ?? 'Ver más' }}
-        </a>
+        <div class="" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1500">
+            <a href="{{ $button['url'] }}" title="{{ $button['title'] ?? 'Ver más' }}" class="hero__button button__primary" >
+              {{ $button['title'] ?? 'Ver más' }}
+            </a>
+        </div>
       @endif
   </div>
 </div>

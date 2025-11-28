@@ -1,4 +1,4 @@
-<section class="section__faq" aria-labelledby="faq-title">
+<section id="faq" class="section__faq" aria-labelledby="faq-title">
   <div class="container section__faq--container" data-faq-single="true">
     @if (!empty($title ?? null))
       <h2 id="faq-title" class="section__faq--title"  data-aos="fade-up" data-aos-duration="1500">{{ $title }}</h2>

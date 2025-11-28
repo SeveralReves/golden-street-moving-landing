@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MovingQuote;
 use Illuminate\Http\Request;
+use App\Services\SendGridService;
 
 class MovingQuoteController extends Controller
 {
@@ -59,13 +60,15 @@ class MovingQuoteController extends Controller
             'destination_elevator' => $validated['destination_elevator'],
             'packing_service' => $validated['packing_service'],
             'comments' => $validated['comments'] ?? null,
-
-            // Valor inicial por defecto
             'status' => 'pending',
         ]);
 
+        $sent = SendGridService::sendLead($quote);
+
+
         return response()->json([
             'message' => 'Quote request saved successfully.',
+            'email_sent' => $sent,
             'quote' => $quote
         ], 201);
     }

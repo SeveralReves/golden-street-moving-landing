@@ -1,4 +1,4 @@
-<section class="section__benefits">
+<section id="about" class="section__benefits">
   <div class="container section__benefits--container">
     @if (isset($title) && !empty($title))
       <h2 class="section__benefits--title"  data-aos="fade-up" data-aos-duration="1500">

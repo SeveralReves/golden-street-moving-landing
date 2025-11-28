@@ -2,7 +2,7 @@
     $wp_action = isset($wp_action) ? $wp_action : 'success';
 @endphp
 
-<section class="section__booking">
+<section id="booking" class="section__booking">
   <div class="container">
     <div class="section__booking--header">
       @if (isset($title) && !empty($title))

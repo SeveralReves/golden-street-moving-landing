@@ -4,33 +4,33 @@
     $menu = [
       [
         'title' => 'Home',
-        'url' => '#'
+        'url' => '/#'
       ],
       [
         'title' => 'Services',
-        'url' => '#'
-      ],
-      [
-        'title' => 'Areas',
-        'url' => '#'
+        'url' => '/#services'
       ],
       [
         'title' => 'Testimonials',
-        'url' => '#'
+        'url' => '/#testimonials'
       ],
       [
         'title' => 'Books',
-        'url' => '#'
+        'url' => '/#booking'
+      ],
+      [
+        'title' => 'FAQ',
+        'url' => '/#faq'
       ],
       [
         'title' => 'Contact',
-        'url' => '#'
+        'url' => '/#booking'
       ],
     ];
 
     $button = [
       'title' => 'Book your move',
-      'url' => '#'
+      'url' => '/#booking',
     ]
 @endphp
 

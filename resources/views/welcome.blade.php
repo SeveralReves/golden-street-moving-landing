@@ -6,7 +6,7 @@
         'title' => 'Your move is easy, safe, and on time.',
         'description' => 'We are a professional moving service that ensures a stress-free experience from start to finish. Our team of experts handles everything with care and precision.',
         'button' => [
-            'url' => '#',
+            'url' => '#booking',
             'title' => 'Book your date now'
         ],
     ])
@@ -41,7 +41,7 @@
                 'image' => asset('/images/cards/services-1.jpeg'),
                 'button' => [
                     'title' => 'Request this service',
-                    'url' => '#'
+                    'url' => '#booking'
                 ]
             ],
             [
@@ -50,7 +50,7 @@
                 'image' => asset('/images/cards/services-2.png'),
                 'button' => [
                     'title' => 'Request this service',
-                    'url' => '#'
+                    'url' => '#booking'
                 ]
             ],
             [
@@ -59,16 +59,7 @@
                 'image' => asset('/images/cards/services-3.png'),
                 'button' => [
                     'title' => 'Request this service',
-                    'url' => '#'
-                ]
-            ],
-            [
-                'title' => 'Storage Solutions',
-                'description' => 'Secure, flexible, and climate-controlled storage options for any need.',
-                'image' => asset('/images/cards/services-4.png'),
-                'button' => [
-                    'title' => 'Request this service',
-                    'url' => '#'
+                    'url' => '#booking'
                 ]
             ],
         ]
@@ -78,7 +69,7 @@
         'title' => 'Book Your Move Online',
         'description' => 'Get a free quote in just a few simple steps.',
         'button' => [
-            'url' => '#',
+            'url' => '#booking',
             'title' => 'Book your date now'
         ],
         'wp_action' => 'booking'
@@ -89,7 +80,7 @@
         'description' => "Have questions? We've got answers.",
         'cta' => [
             'text' => 'Contact Us',
-            'url'  => '#contact'
+            'url'  => '#booking'
         ],
         'faqs' => [
             [
@@ -124,7 +115,7 @@
         'description' => "See what our happy customers say about their moving experience.",
         'cta' => [
             'text' => 'Book Your Move Now',
-            'url'  => '#contact'
+            'url'  => '#booking'
         ],
         'reviews' => [
             [

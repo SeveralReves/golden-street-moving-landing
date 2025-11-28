@@ -4,7 +4,7 @@
   $avg = $count ? round(array_sum(array_map(fn($r) => floatval($r['rating'] ?? 0), $items)) / $count, 1) : null;
 @endphp
 
-<section class="section__reviews" aria-labelledby="reviews-title">
+<section id="testimonials" class="section__reviews" aria-labelledby="reviews-title">
   <div class="container section__reviews--container">
     @if (!empty($title ?? null))
       <h2 id="reviews-title" class="section__reviews--title"  data-aos="fade-up" data-aos-duration="1500">{{ $title }}</h2>
@@ -82,11 +82,11 @@
               “{{ $item['text'] ?? '' }}”
             </blockquote>
 
-            @if (!empty($item['url'] ?? null))
+            <!-- @if (!empty($item['url'] ?? null))
               <a class="review__link" href="{{ $item['url'] }}" target="_blank" rel="noopener" title="See on Google">
                 View on Google
               </a>
-            @endif
+            @endif -->
           </article>
         @endforeach
       </div>
