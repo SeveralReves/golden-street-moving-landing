@@ -1,6 +1,7 @@
 import './bootstrap';
 
 import Alpine from 'alpinejs';
+import Headroom from "headroom.js";
 
 window.Alpine = Alpine;
 
@@ -36,13 +37,24 @@ const components = {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    AOS.init({
-      offset: 120, 
-      delay: 0, 
-      duration: 600,
-      easing: 'ease', 
-      once: true, 
-    });
+  const navbar = document.querySelector(".header");
+  // construct an instance of Headroom, passing the element
+  if (!navbar) {
+    console.warn("No se encontró el elemento de navegación para Headroom.");
+    return;
+  }
+  var headroom  = new Headroom(navbar, {
+  });
+  // initialise
+  headroom.init();
+
+  AOS.init({
+    offset: 120, 
+    delay: 0, 
+    duration: 600,
+    easing: 'ease', 
+    once: true, 
+  });
   // Busca todos los nodos Blade que pidan un componente Vue
   document.querySelectorAll('[data-vue]').forEach(async (el) => {
     const name = el.getAttribute('data-vue')

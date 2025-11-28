@@ -7,7 +7,37 @@
   padding: 30px 0;
   box-shadow: 0 0 10px #000;
   z-index: 10;
-  position: sticky;
+  position: fixed;
+  top: 0;
+  padding-top: 30px;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  transition: all 500ms ease-in-out;
+  &.headroom--not-top{
+    @media (min-width: 1025px) {
+      pointer-events: none;
+      .header__nav{
+        pointer-events: all;
+      }
+      // backdrop-filter: blur(12.6px)
+    }
+    .header__logo-img{
+      opacity: 0;
+    }
+  }
+  &.headroom--unpinned {
+    @media (min-width: 1025px) {
+      transform: translateY(-150%);
+    }
+  }
+  @media (min-width: 1025px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 13;
+  }
   &__container {
     display: flex;
     justify-content: space-between;
