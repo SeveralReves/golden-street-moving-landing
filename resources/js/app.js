@@ -41,12 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // construct an instance of Headroom, passing the element
   if (!navbar) {
     console.warn("No se encontró el elemento de navegación para Headroom.");
-    return;
+  }else{
+    var headroom  = new Headroom(navbar, {
+    });
+    // initialise
+    headroom.init();
+
   }
-  var headroom  = new Headroom(navbar, {
-  });
-  // initialise
-  headroom.init();
 
   AOS.init({
     offset: 120, 
