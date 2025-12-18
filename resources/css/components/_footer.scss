@@ -29,7 +29,7 @@
   }
 
   &__logo img {
-    height: 100px;
+    height: 50px;
   }
 
   &__nav{
@@ -51,7 +51,7 @@
         text-decoration: none;
         transition: color 0.3s;
         &:hover {
-          color: $primary;
+          color: $black;
         }
       }
     }
@@ -93,7 +93,7 @@
       }
     }
     a {
-      color: $primary;
+      color: $white;
       text-decoration: none;
       &:hover {
         text-decoration: underline;

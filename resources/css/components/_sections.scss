@@ -8,51 +8,13 @@
       max-width: 750px;
       text-align: center;
       margin: auto;
-      color: $primary;
+      color: $black;
     }
     &--description {
       margin: 10px auto 0;
       text-align: center;
       max-width: 550px;
       color: $white;
-    }
-  }
-  &__benefits {
-    padding: 80px 0;
-    background-color: rgb(250, 249, 248);
-    &--title {
-      max-width: 850px;
-      margin: auto;
-      text-align: center;
-    }
-    &--content {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 30px;
-      margin-top: 42px;
-      @media (max-width: 1025px) {
-        grid-template-columns: repeat(1,1fr);
-      }
-    }
-
-  }
-  &__services {
-    padding: 80px 0;
-    &--title {
-      max-width: 850px;
-      margin: auto;
-      text-align: center;
-    }
-    &--content {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 42px;
-
-      @media (max-width: 1025px) {
-        flex-direction: column;
-        align-items: center;
-      }
     }
   }
   &__faq {
@@ -88,34 +50,6 @@
         color: rgba(0,0,0,.55);
         margin-bottom: 14px;
       }
-    }
-  }
-  &__reviews {
-    padding: 80px 0;
-    background: rgba(0,0,0,.03);
-    border-radius: 18px;
-
-    &--title {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    &--description {
-      margin: 10px auto 0;
-      text-align: center;
-      max-width: 680px;
-      color: rgba(0,0,0,.65);
-    }
-
-    &--slider {
-      margin: 36px auto 0;
-      max-width: 1100px;
-    }
-
-    &--cta {
-      margin-top: 28px;
-      text-align: center;
     }
   }
 }
@@ -156,7 +90,6 @@
   }
 }
 
-/* Cuando está abierto, rota el chevron */
 .faq__item[open] .faq__chevron {
   transform: rotate(180deg);
 }

@@ -1,5 +1,6 @@
 @php
-  $image = asset('/images/hero-1.jpeg');
+  // $image = asset('/images/hero-1.jpeg');
+  $image = null;
     
 @endphp
 

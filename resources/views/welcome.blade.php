@@ -3,67 +3,14 @@
 @section('content')
 
     @include('components.hero', [
-        'title' => 'Your move is easy, safe, and on time.',
-        'description' => 'We are a professional moving service that ensures a stress-free experience from start to finish. Our team of experts handles everything with care and precision.',
+        'title' => 'Veniam consectetur sit incididunt labore.',
+        'description' => 'Ut elit dolor velit reprehenderit ipsum nulla nostrud fugiat id id deserunt adipisicing aliquip. Deserunt nulla laboris culpa ipsum commodo veniam sint laboris excepteur dolor ea magna id amet.',
         'button' => [
-            'url' => '#booking',
-            'title' => 'Book your date now'
+            'url' => '#',
+            'title' => 'See More'
         ],
     ])
 
-    @include('components.section-benefits', [
-        'title' => 'Your Smoothest Move, Guaranteed',
-        'cards' => [
-            [
-                'title' => 'Fully Insured & Secure',
-                'description' => 'All moves are protected and items are handled with the utmost care.',
-                'icon' => asset('/images/icons/shield.svg')
-            ],
-            [
-                'title' => 'Always On Time',
-                'description' => 'Reliable and punctual service you can count on, every time.',
-                'icon' => asset('/images/icons/clock.svg')
-            ],
-            [
-                'title' => 'Friendly, Professional Team',
-                'description' => 'Our trained and courteous staff are here to help make your move a breeze.',
-                'icon' => asset('/images/icons/smile-outlined.svg')
-            ],
-        ]
-    ])
-
-    @include('components.section-services', [
-        'title' => 'Our Moving Services',
-        'cards' => [
-            [
-                'title' => 'Residential Moving',
-                'description' => 'Seamless home transitions, handled with care and precision by our expert team.',
-                'image' => asset('/images/cards/services-1.jpeg'),
-                'button' => [
-                    'title' => 'Request this service',
-                    'url' => '#booking'
-                ]
-            ],
-            [
-                'title' => 'Corporate Moving',
-                'description' => 'Efficiency and minimal business disruption for your office relocation.',
-                'image' => asset('/images/cards/services-2.png'),
-                'button' => [
-                    'title' => 'Request this service',
-                    'url' => '#booking'
-                ]
-            ],
-            [
-                'title' => 'Packing Services',
-                'description' => 'Professional packing and unpacking to save you time and protect your belongings.',
-                'image' => asset('/images/cards/services-3.png'),
-                'button' => [
-                    'title' => 'Request this service',
-                    'url' => '#booking'
-                ]
-            ],
-        ]
-    ])
 
     @include('components.section-booking', [
         'title' => 'Book Your Move Online',
@@ -106,70 +53,6 @@
         ]
     ])
 
-    @include('components.banner', [
-        'title' => 'Out-of-state transfers',
-        'description' => 'Enjoy complete coverage, real-time tracking, and the peace of mind that your belongings are in good hands.'
-    ])
-    @include('components.section-reviews', [
-        'title' => "Don't just take our word for it",
-        'description' => "See what our happy customers say about their moving experience.",
-        'cta' => [
-            'text' => 'Book Your Move Now',
-            'url'  => '#booking'
-        ],
-        'reviews' => [
-            [
-                'name' => 'John Doe',
-                'avatar' => asset('/images/cards/review-1.png'),
-                'rating' => 5,
-                'text' => "The movers were professional and friendly. Highly recommend!",
-                'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review', // opcional
-                'date' => '2025-08-02'
-            ],
-            [
-                'name' => 'Jane Smith',
-                'avatar' => asset('/images/cards/review-2.png'),
-                'rating' => 4.5,
-                'text' => "Everything arrived in perfect condition. Great service.",
-                'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review',
-                'date' => '2025-07-15'
-            ],
-            [
-                'name' => 'Peter Jones',
-                'avatar' => asset('/images/cards/review-3.png'),
-                'rating' => 4,
-                'text' => "Smooth process from quote to final delivery.",
-                'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review',
-                'date' => '2025-06-20'
-            ],
-            [
-                'name' => 'Sarah Lee',
-                'avatar' => asset('/images/cards/review-4.png'),
-                'rating' => 5,
-                'text' => "Incredibly careful with my fragile items. A+",
-                'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review',
-                'date' => '2025-05-11'
-            ],
-            [
-                'name' => 'John Doe',
-                'avatar' => asset('/images/cards/review-1.png'),
-                'rating' => 5,
-                'text' => "The movers were professional and friendly. Highly recommend!",
-                'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review', // opcional
-                'date' => '2025-08-02'
-            ],
-        ],
-        // Opcional: controla el slider
-        'slider' => [
-            'autoplay' => true,
-            'speed' => 4000
-        ]
-        ])
 
 
 

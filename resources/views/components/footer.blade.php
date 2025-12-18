@@ -2,7 +2,7 @@
   <div class="container">
     <div class="footer__top">
       <div class="footer__logo">
-        <img src="{{ asset('/images/logo-1.png') }}" alt="Logo">
+        <img src="{{ asset('/images/svr.png') }}" alt="Logo">
       </div>
 
       <nav class="footer__nav">

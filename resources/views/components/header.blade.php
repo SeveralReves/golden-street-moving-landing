@@ -1,5 +1,5 @@
 @php
-    $logo = asset('/images/logo-1.png');
+    $logo = asset('/images/svr.png');
 
     $menu = [
       [
@@ -29,7 +29,7 @@
     ];
 
     $button = [
-      'title' => 'Book your move',
+      'title' => 'Contact Us',
       'url' => '/#booking',
     ]
 @endphp
