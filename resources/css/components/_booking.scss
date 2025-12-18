@@ -59,7 +59,7 @@
       width: 100%;
     }
     .form-error {
-      color: $primary;
+      color: red;
       font-size: 12px;
     }
     .multiselect{
@@ -94,10 +94,8 @@
       border-radius: 10px;
       appearance: none;
       height: 40px;
-      // background-color: #f5f5f5;
-      // border: 1px solid #ccc;
-      background-color:  #131314;
-      border: 1px solid #000;
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
       color: #fff;
       @media (max-width: 350px) {
         max-width: 220px;

@@ -174,35 +174,6 @@ async function onSubmit(values) {
                   <ErrorMessage name="email" class="form-error" />
                 </div>
 
-                <div class="booking__form--field">
-                  <label class="booking__form--label">Origin Address</label>
-                  <Field name="org_address" v-slot="{ value, errorMessage, setValue, setTouched }">
-                    <AddressAutocomplete
-                      :api-key="GOOGLE_API_KEY"
-                      :model-value="value"
-                      :countries="['us', 've', 'nl']"
-                      placeholder="Start typing the origin address"
-                      @update:modelValue="setValue"
-                      @blur="() => setTouched(true)"
-                    />
-                    <p v-if="errorMessage" class="form-error"><span>{{ errorMessage }}</span></p>
-                  </Field>
-                </div>
-
-                <div class="booking__form--field">
-                  <label class="booking__form--label">Destination Address</label>
-                  <Field name="end_address" v-slot="{ value, errorMessage, setValue, setTouched }">
-                    <AddressAutocomplete
-                      :api-key="GOOGLE_API_KEY"
-                      :model-value="value"
-                      :countries="['us', 've', 'nl']"
-                      placeholder="Destination address"
-                      @update:modelValue="setValue"
-                      @blur="() => setTouched(true)"
-                    />
-                    <p v-if="errorMessage" class="form-error"><span>{{ errorMessage }}</span></p>
-                  </Field>
-                </div>
 
                 <div class="booking__form--field">
                   <label for="date" class="booking__form--label">Preferred Date</label>
