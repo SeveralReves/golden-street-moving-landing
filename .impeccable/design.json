@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-05T00:00:00Z",
+  "title": "Design System: Golden Street Moving",
+  "extensions": {
+    "colorMeta": {
+      "marigold-gold": { "role": "primary", "displayName": "Marigold Gold", "canonical": "#dbbd1a", "tonalRamp": ["#443b08", "#78680e", "#ad9514", "#e1c21b", "#ead14c", "#f0df80", "#f6ecb4", "#fcf9e8"] },
+      "midnight-navy": { "role": "secondary", "displayName": "Midnight Navy", "canonical": "#05172b", "tonalRamp": ["#082545", "#0e4179", "#145dad", "#1a78e1", "#4c97ea", "#80b5f0", "#b4d3f6", "#e8f2fc"] },
+      "harbor-blue": { "role": "tertiary", "displayName": "Harbor Blue", "canonical": "#0d253e", "tonalRamp": ["#0d263f", "#17426f", "#215fa0", "#2c7cd0", "#5999dc", "#8ab7e6", "#bad5f0", "#eaf2fb"] },
+      "ink-olive": { "role": "neutral", "displayName": "Ink Olive", "canonical": "#1d2315", "tonalRamp": ["#28301d", "#465433", "#647948", "#829d5e", "#9eb482", "#bbcaa6", "#d7e0cb", "#f3f5ef"] },
+      "soft-mist": { "role": "neutral", "displayName": "Soft Mist", "canonical": "#faf9f8", "tonalRamp": ["#2d2620", "#4f4338", "#716150", "#937e69", "#ac9b8a", "#c4b8ac", "#dcd5ce", "#f4f2f0"] },
+      "pure-white": { "role": "neutral", "displayName": "Pure White", "canonical": "#ffffff", "tonalRamp": ["#1a1a1a", "#333333", "#4d4d4d", "#666666", "#b3b3b3", "#cccccc", "#e6e6e6", "#ffffff"] },
+      "near-black": { "role": "neutral", "displayName": "Near Black", "canonical": "#1e1e1e", "tonalRamp": ["#262626", "#434343", "#616161", "#7e7e7e", "#9b9b9b", "#b8b8b8", "#d5d5d5", "#f2f2f2"] },
+      "ink-field": { "role": "neutral", "displayName": "Ink Field", "canonical": "#131314", "tonalRamp": ["#252527", "#424245", "#5e5e63", "#7a7a81", "#98989d", "#b6b6ba", "#d4d4d6", "#f2f2f3"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero title (h1) only." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles (h2) — benefits, services, booking, FAQ, reviews." },
+      "title": { "displayName": "Title", "purpose": "Card and sub-section titles (h3)." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy; .lead variant (500 weight, 1.125rem) for emphasized intros." },
+      "label": { "displayName": "Label", "purpose": "Small uppercase structural labels, e.g. booking modal section headers." }
+    },
+    "shadows": [
+      { "name": "resting-card", "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)", "purpose": "Default flat-card shadow at rest (benefit/service cards)." },
+      { "name": "hover-lift", "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)", "purpose": "Shadow a card animates to on hover, 350ms ease." },
+      { "name": "ambient-panel", "value": "0 16px 50px rgba(0,0,0,.06)", "purpose": "Large soft glow under the FAQ accordion container." },
+      { "name": "review-card", "value": "0 10px 30px rgba(0,0,0,.06)", "purpose": "Always-on soft shadow for testimonial cards in the carousel." },
+      { "name": "modal", "value": "0 10px 40px rgba(0,0,0,.15)", "purpose": "Deepest shadow in the system; the booking status modal only." },
+      { "name": "header-hard", "value": "0 0 10px #000", "purpose": "Confirmed one-off, solid undiffused shadow on the fixed header only. Do not reuse for new components." }
+    ],
+    "motion": [
+      { "name": "hover-transition", "value": "all 350ms ease-in-out", "purpose": "Standard hover transition for buttons, links, and card shadows." },
+      { "name": "aos-fade-up", "value": "opacity/transform, ~1500ms", "purpose": "Scroll-entrance animation (AOS library) on hero and section titles/cards." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "320px" },
+      { "name": "mobileMedium", "value": "426px" },
+      { "name": "smallTablet", "value": "576px" },
+      { "name": "tablet", "value": "770px" },
+      { "name": "desktop", "value": "980px" },
+      { "name": "large", "value": "1020px" },
+      { "name": "largeTablet", "value": "1025px" },
+      { "name": "wide", "value": "1281px" },
+      { "name": "desktopLg", "value": "1920px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call-to-action; gold at rest, swaps to navy on hover.",
+      "html": "<button class=\"ds-btn-primary\">Book your move now</button>",
+      "css": ".ds-btn-primary { padding: 8px 16px; border-radius: 10px; font-weight: 700; font-family: 'Montserrat', sans-serif; background-color: #dbbd1a; color: #fff; font-size: 16px; border: none; cursor: pointer; transition: all 350ms ease-in-out; } .ds-btn-primary:hover { background-color: #05172b; } .ds-btn-primary:focus-visible { outline: 2px solid #05172b; outline-offset: 2px; } .ds-btn-primary:disabled { background-color: #ccc; cursor: not-allowed; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Mirrored inverse of the primary button; navy at rest, swaps to gold on hover.",
+      "html": "<button class=\"ds-btn-secondary\">Request this service</button>",
+      "css": ".ds-btn-secondary { padding: 8px 16px; border-radius: 10px; font-weight: 700; font-family: 'Montserrat', sans-serif; background-color: #05172b; color: #fff; font-size: 16px; border: none; cursor: pointer; transition: all 350ms ease-in-out; } .ds-btn-secondary:hover { background-color: #dbbd1a; } .ds-btn-secondary:focus-visible { outline: 2px solid #dbbd1a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Benefit Card",
+      "kind": "card",
+      "refersTo": "card-benefit",
+      "description": "Centered icon-badge card used in the benefits/trust section; flat at rest, lifts on hover.",
+      "html": "<article class=\"ds-card-benefit\"><span class=\"ds-card-benefit-icon\">&#9679;</span><h3 class=\"ds-card-benefit-title\">Fully Insured &amp; Secure</h3><p class=\"ds-card-benefit-desc\">All moves are protected and items are handled with the utmost care.</p></article>",
+      "css": ".ds-card-benefit { display: flex; flex-direction: column; align-items: center; border-radius: 12px; padding: 24px; background-color: #fff; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); transition: box-shadow 350ms ease; text-align: center; font-family: 'Inter', sans-serif; } .ds-card-benefit:hover { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); } .ds-card-benefit-icon { width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: #dbbd1a33; margin-bottom: 24px; color: #dbbd1a; font-size: 28px; } .ds-card-benefit-title { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #dbbd1a; font-size: 1.125rem; margin: 0; } .ds-card-benefit-desc { max-width: 300px; margin-top: 12px; color: rgb(75 85 99); }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Image-led card for services; image zooms and shadow lifts together on hover.",
+      "html": "<article class=\"ds-card-service\"><div class=\"ds-card-service-picture\"><img src=\"https://placehold.co/300x250\" alt=\"\" class=\"ds-card-service-image\"></div><div class=\"ds-card-service-content\"><h3 class=\"ds-card-service-title\">Residential Moving</h3><p class=\"ds-card-service-desc\">Seamless home transitions, handled with care and precision.</p><button class=\"ds-btn-secondary\">Request this service</button></div></article>",
+      "css": ".ds-card-service { display: flex; flex-direction: column; align-items: center; border-radius: 12px; width: 300px; overflow: hidden; background-color: #fff; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); transition: box-shadow 350ms ease; font-family: 'Inter', sans-serif; } .ds-card-service:hover { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); } .ds-card-service:hover .ds-card-service-image { transform: scale(1.1); } .ds-card-service-picture { width: 100%; height: 250px; overflow: hidden; } .ds-card-service-image { width: 100%; height: 100%; object-fit: cover; transition: all 350ms ease; } .ds-card-service-content { padding: 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; } .ds-card-service-title { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #dbbd1a; font-size: 1.125rem; margin: 0; } .ds-card-service-desc { color: rgb(75 85 99); margin: 0; }"
+    },
+    {
+      "name": "Booking Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Dark-theme text field used inside the booking form's navy card — the one place the page departs from its light surfaces.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\">Full name</label><input class=\"ds-field-input\" type=\"text\" placeholder=\"Jane Doe\"></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 10px; font-family: 'Inter', sans-serif; } .ds-field-label { font-weight: 600; font-size: 1rem; color: #fff; } .ds-field-input { width: 100%; height: 40px; border-radius: 10px; appearance: none; background-color: #131314; border: 1px solid #000; color: #fff; padding: 0 12px; } .ds-field-input::placeholder { opacity: 0.5; } .ds-field-input:focus { border: 1px solid #ccc; outline: none; }"
+    },
+    {
+      "name": "Review Card",
+      "kind": "card",
+      "refersTo": "review-card",
+      "description": "Testimonial carousel card with avatar, star rating, and quote — always-on soft shadow since it lives inside a slider.",
+      "html": "<article class=\"ds-review-card\"><div class=\"ds-review-header\"><img class=\"ds-review-avatar\" src=\"https://placehold.co/56x56\" alt=\"\"><div><div class=\"ds-review-name\">Jane Smith</div><div class=\"ds-review-stars\">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><blockquote class=\"ds-review-text\">Everything arrived in perfect condition. Great service.</blockquote></article>",
+      "css": ".ds-review-card { background: #fff; border-radius: 16px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,.06); display: grid; gap: 14px; font-family: 'Inter', sans-serif; } .ds-review-header { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center; } .ds-review-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; } .ds-review-name { font-weight: 700; font-family: 'Montserrat', sans-serif; } .ds-review-stars { color: #fbbc04; } .ds-review-text { color: rgba(0,0,0,.75); margin: 0; }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "chip-status",
+      "description": "Dashboard-only lead-status pill. Functional, non-brand colors keyed to pipeline stage — intentionally outside the gold/navy palette.",
+      "html": "<span class=\"ds-chip ds-chip--quoted\">Quoted</span>",
+      "css": ".ds-chip { padding: 5px 10px; border-radius: 10px; background-color: #e5e7eb; text-transform: uppercase; font-size: 12px; font-weight: 700; font-family: 'Inter', sans-serif; display: inline-block; } .ds-chip--pending { background-color: red; color: #fff; } .ds-chip--in_review { background-color: blue; color: #fff; } .ds-chip--quoted { background-color: aqua; } .ds-chip--closed { background-color: green; color: #fff; } .ds-chip--cancelled { background-color: #ccc; opacity: 0.4; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Golden Hour Move",
+    "overview": "The system reads moving as a hopeful transition, not a chore — the same optimism as golden-hour light. A single warm gold (Marigold Gold) carries every headline, every primary action, and every moment of confirmation, always against calm neutral ground: white, a soft off-white mist, or one of two deep navies. Nothing else competes for the eye. The voice is warm and reassuring, editorial-clean rather than loud — surfaces sit flat at rest and lift only when touched, copy leans on words like \"stress-free\" and \"handled with care,\" and the gold never spreads thin enough to feel decorative rather than earned.\n\nThe system has two real, confirmed navies rather than one: Midnight Navy, the deeper of the two, grounds structural surfaces (footer, the booking card, the secondary button) and reads as the brand's \"night\" register. Harbor Blue, a half-step lighter, is reserved for feature moments that need their own atmosphere (the out-of-state banner, the booking section backdrop) — close enough to belong to the same family, distinct enough to signal \"this section is a different beat.\"",
+    "keyCharacteristics": [
+      "One accent color (Marigold Gold) used consistently for headlines, primary actions, hover states, and active indicators — never for large fills.",
+      "Two deep navies with distinct roles: Midnight Navy for structure, Harbor Blue for atmospheric feature sections.",
+      "Flat-by-default surfaces; shadow appears only as a hover response, always soft and warm-tinted, never hard-edged (with one confirmed exception — see Elevation).",
+      "Generously rounded corners (10–18px) throughout; nothing sharp-cornered except the hero's full-bleed image.",
+      "Warm, reassuring editorial voice carried in both copy and motion (gentle AOS fade-ups, no aggressive animation)."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Marigold Gold is the only warm color in the system. It marks headings, primary actions, and state changes — never large surface fills. If a new element needs emphasis, reach for gold before reaching for a new color.", "section": "colors" },
+      { "name": "The Two-Navy Rule", "body": "Midnight Navy and Harbor Blue are both legitimate, both confirmed, and not interchangeable: Midnight Navy is structure (things that frame the page), Harbor Blue is a feature section's own atmosphere. Don't introduce a third near-navy — pick one of these two.", "section": "colors" },
+      { "name": "The Gold Headline Rule", "body": "Every heading (h1–h6) is Marigold Gold by default, set in Montserrat 700. This is a deliberate, site-wide default — don't override heading color per-section without a strong reason; it's the single strongest visual signature of the system.", "section": "typography" },
+      { "name": "The Hover-Lift Rule", "body": "Cards are flat at rest and gain a soft, diffuse shadow only on hover (350ms ease). A card that shows its shadow before interaction is off-system.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do treat Marigold Gold as the system's only accent — for headlines, primary actions, hover states, and active/selected indicators.",
+      "Do keep cards and panels flat at rest; only add shadow as a hover response, and keep it soft and warm-tinted.",
+      "Do use the primary/secondary button pair as mirrored opposites (gold↔navy swap on hover) rather than inventing a third button treatment.",
+      "Do pick Midnight Navy for structural chrome (footer, cards, secondary actions) and Harbor Blue for a feature section's own atmosphere — they are not interchangeable, but both are real, confirmed tokens.",
+      "Do keep corners generously rounded (10–18px); a sharp-cornered new component would be off-system."
+    ],
+    "donts": [
+      "Don't introduce a new accent color alongside gold — if something needs to stand out, make it gold, larger, or bolder, not a new hue.",
+      "Don't copy the header's hard 0 0 10px #000 shadow into new components; it's a confirmed one-off for persistent chrome, not the system's shadow language.",
+      "Don't theme new form widgets in the stray purple (#5E17EB) currently leaking from the Google Places autocomplete override — that's a known gap, not an available brand color.",
+      "Don't reharmonize the dashboard's functional status-chip colors (red/blue/aqua/green/gray) into gold/navy — they're a distinct, non-brand signaling system for internal staff."
+    ]
+  }
+}
