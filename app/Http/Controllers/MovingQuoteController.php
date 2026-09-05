@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MovingQuote;
 use Illuminate\Http\Request;
-use App\Services\SendGridService;
+use App\Services\ResendService;
 
 class MovingQuoteController extends Controller
 {
@@ -17,12 +17,12 @@ class MovingQuoteController extends Controller
 
             // Direcciones anidadas
             'org_address.formatted' => 'required|string',
-            'org_address.raw.location.lat' => 'required|numeric',
-            'org_address.raw.location.lng' => 'required|numeric',
+            'org_address.raw.location.lat' => 'nullable|numeric',
+            'org_address.raw.location.lng' => 'nullable|numeric',
 
             'end_address.formatted' => 'required|string',
-            'end_address.raw.location.lat' => 'required|numeric',
-            'end_address.raw.location.lng' => 'required|numeric',
+            'end_address.raw.location.lat' => 'nullable|numeric',
+            'end_address.raw.location.lng' => 'nullable|numeric',
 
             // Otros campos
             'date' => 'required|date',
@@ -63,7 +63,7 @@ class MovingQuoteController extends Controller
             'status' => 'pending',
         ]);
 
-        $sent = SendGridService::sendLead($quote);
+        $sent = ResendService::sendLead($quote);
 
 
         return response()->json([

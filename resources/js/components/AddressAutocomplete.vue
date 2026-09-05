@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { loadPlaces, loadMaps } from '../lib/google' // tu wrapper que hace importLibrary una sola vez
 
 const props = defineProps<{
@@ -8,9 +8,13 @@ const props = defineProps<{
   countries?: string[]           // ['ve','nl','us']
   // includedPrimaryTypes?: string[] // opcional, p.ej. ['establishment']
   biasCenter?: { lat: number; lng: number } | null
+  apiKey?: string | null         // si no viene, se usa un input de texto simple
 }>()
 
 const emit = defineEmits(['update:modelValue', 'place-changed', 'blur'])
+
+// Sin API key no hay autocomplete: se degrada a un input de texto plano.
+const hasApiKey = computed(() => !!props.apiKey)
 
 const containerRef = ref<HTMLDivElement|null>(null)
 let el: any | null = null
@@ -101,8 +105,23 @@ async function init() {
   containerRef.value?.appendChild(el)
 }
 
+function onPlainInput(e: Event) {
+  const text = (e.target as HTMLInputElement).value
+  emit('update:modelValue', {
+    formatted: text,
+    place_id: null,
+    street: '', number: '', city: '', state: '', county: '',
+    country: '', postal: '',
+    lat: null,
+    lng: null,
+    raw: null
+  })
+}
+
 onMounted(() => {
-  init().catch(e => console.error('Places init error:', e))
+  if (hasApiKey.value) {
+    init().catch(e => console.error('Places init error:', e))
+  }
 })
 
 onBeforeUnmount(() => {
@@ -119,7 +138,16 @@ watch(() => props.modelValue, (v) => {
 
 <template>
   <div class="address-autocomplete">
-    <div ref="containerRef" class="input-text"></div>
+    <input
+      v-if="!hasApiKey"
+      type="text"
+      class="input-text"
+      :placeholder="placeholder ?? 'Type an address'"
+      :value="modelValue?.formatted ?? ''"
+      @input="onPlainInput"
+      @blur="$emit('blur')"
+    />
+    <div v-else ref="containerRef" class="input-text"></div>
   </div>
 </template>
 

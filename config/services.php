@@ -31,10 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'sendgrid' => [
-        'api_key'     => env('SENDGRID_API_KEY'),
-        'from_email'  => env('SENDGRID_FROM_EMAIL', 'no-reply@severalreves.lat'),
-        'from_name'   => env('SENDGRID_FROM_NAME', 'Golden Street Moving'),
-        'to_email'    => env('SENDGRID_TO_EMAIL', 'gabrielalexander2@gmail.com'),
+    'resend' => [
+        'api_key'     => env('RESEND_API_KEY'),
+        'from_email'  => env('RESEND_FROM_EMAIL', 'no-reply@severalreves.lat'),
+        'from_name'   => env('RESEND_FROM_NAME', 'Golden Street Moving'),
+        'to_email'    => env('RESEND_TO_EMAIL', 'gabrielalexander2@gmail.com'),
     ],
 ];

@@ -12,6 +12,8 @@ import Swal from 'sweetalert2'
 
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+// Sin API key no hay geocoding: lat/lng dejan de ser obligatorios y el campo cae a texto simple.
+const HAS_GOOGLE_MAPS = !!GOOGLE_API_KEY
 
 // Props
 const props = defineProps({
@@ -48,13 +50,13 @@ const schema = Yup.object().shape({
   email: Yup.string().email().required().label('Email'),
   org_address: Yup.object({
     formatted: Yup.string().required(),
-    lat: Yup.string().required(),
-    lng: Yup.string().required()
+    lat: HAS_GOOGLE_MAPS ? Yup.string().required() : Yup.string().nullable(),
+    lng: HAS_GOOGLE_MAPS ? Yup.string().required() : Yup.string().nullable()
   }).required(),
   end_address: Yup.object({
     formatted: Yup.string().required(),
-    lat: Yup.string().required(),
-    lng: Yup.string().required()
+    lat: HAS_GOOGLE_MAPS ? Yup.string().required() : Yup.string().nullable(),
+    lng: HAS_GOOGLE_MAPS ? Yup.string().required() : Yup.string().nullable()
   }).required(),
   date: Yup.date()
     .required()
