@@ -31,6 +31,13 @@ class ResendService
                 'to' => [$toEmail],
                 'subject' => '🟡 New Contact from Golden Street Moving',
                 'html' => $body,
+                'attachments' => [
+                    [
+                        'filename' => 'logo-1.png',
+                        'content' => base64_encode(file_get_contents(public_path('images/logo-1.png'))),
+                        'content_id' => 'logo-1',
+                    ],
+                ],
             ]);
 
             Log::info('Resend email id: ' . ($response['id'] ?? 'unknown'));

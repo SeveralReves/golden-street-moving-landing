@@ -6,7 +6,7 @@
 </head>
 <body style="margin:0; padding:0; background-color:#f4f4f4; font-family: Arial, Helvetica, sans-serif;">
 @php
-    $logo = "https://golden-street-website.severalreves.lat/images/logo-1.png";
+    $logo = "cid:logo-1";
 @endphp
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f4f4; padding:20px 0;">
