@@ -7,17 +7,23 @@
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
     background-color: $primary;
-    color: $white;
+    color: $secondary;
     font-size: 16px;
     transition: all 350ms ease-in-out;
     @include hover {
       background-color: $secondary;
+      color: $white;
+    }
+    &:focus-visible {
+      outline: 2px solid $secondary;
+      outline-offset: 2px;
     }
     @media (max-width: 1025px) {
       font-size: 12px;
     }
     &:disabled {
       background-color: #ccc;
+      color: rgba(0, 0, 0, 0.55);
       cursor: not-allowed;
     }
   }
@@ -32,6 +38,11 @@
     transition: all 350ms ease-in-out;
     @include hover {
       background-color: $primary;
+      color: $secondary;
+    }
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
     }
     @media (max-width: 1025px) {
       font-size: 12px;

@@ -49,12 +49,40 @@
       width: 110px;
     }
   }
+  &__nav {
+    @media (max-width: 1025px) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: $white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
+      &--open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 0s;
+      }
+    }
+  }
   &__ul {
     display: flex;
     align-items: center;
     gap: 30px;
     @media (max-width: 1025px) {
-      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 12px 20px 20px;
+    }
+  }
+  &__li {
+    @media (max-width: 1025px) {
+      width: 100%;
     }
   }
   &__link {
@@ -63,5 +91,46 @@
     @include hover {
       color: $primary;
     }
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 4px;
+    }
+    @media (max-width: 1025px) {
+      display: block;
+      width: 100%;
+      padding: 10px 4px;
+    }
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  &__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    @media (max-width: 1025px) {
+      display: flex;
+    }
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+  }
+  &__toggle-bar {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: $secondary;
+    border-radius: 2px;
   }
 }

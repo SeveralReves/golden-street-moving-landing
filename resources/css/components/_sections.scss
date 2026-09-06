@@ -140,12 +140,9 @@
   font-weight: 700;
 
   /* foco accesible */
-  &:focus {
-    // outline: 2px solid $primary;
-    // outline-offset: 2px;
-  }
   &:focus-visible {
-    outline: none;
+    outline: 2px solid $primary;
+    outline-offset: 2px;
   }
 
   /* icono */
@@ -166,7 +163,7 @@
   padding: 0 22px 18px 22px;
   color: rgba(0,0,0,.75);
 
-  p { margin: 0; }
+  p { margin: 0; max-width: 58ch; }
 }
 
 .review__card {

@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-09-05T23:58:14.037Z",
+        "reason": "Incumbent brand typography, documented in DESIGN.md's Typography section (Montserrat for display/headline/title) before this change; not a new choice from this edit"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-09-06T00:15:41.264Z",
+        "reason": "Incumbent brand typography, documented in DESIGN.md's Typography section (Inter for body/label) before this session's edits; not a new choice from this change"
+      }
+    ]
+  }
+}

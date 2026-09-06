@@ -5,7 +5,7 @@
 
 <div class="hero">
   <picture class="hero__picture">
-    <img src="{{ $image }}" alt="golden hero moving" title="golden hero moving"  loading="lazy" class="hero__image">
+    <img src="{{ $image }}" alt="golden hero moving" title="golden hero moving" loading="eager" fetchpriority="high" class="hero__image">
   </picture>
   <div class="hero__overlay"></div>
   <div class="hero__content container">

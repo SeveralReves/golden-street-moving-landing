@@ -39,6 +39,9 @@
     gap: 10px;
     max-width: 990px;
     width: 100%;
+    @media (max-width: 576px) {
+      padding: 0 20px;
+    }
   }
   &__description {
     max-width: 550px;

@@ -119,49 +119,76 @@
         ],
         'reviews' => [
             [
-                'name' => 'John Doe',
-                'avatar' => asset('/images/cards/review-1.png'),
+                'name' => 'Maribel Garcia',
+                'avatar' => 'https://lh3.googleusercontent.com/a/ACg8ocLMgSkWXUY-f5sROhxj0PxpkKZZsY2uYI9dbL01bBJUKbR1ig=w36-h36-p-rp-mo-br100',
                 'rating' => 5,
-                'text' => "The movers were professional and friendly. Highly recommend!",
+                'text' => "I did my move with them and they gave me specialized, professional service. I definitely recommend working with this company. 👍",
                 'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review', // opcional
-                'date' => '2025-08-02'
+                'url' => 'https://maps.app.goo.gl/EPmYRj3aPqK8v6dm8',
+                'date' => '2026-08-22'
             ],
             [
-                'name' => 'Jane Smith',
-                'avatar' => asset('/images/cards/review-2.png'),
-                'rating' => 4.5,
-                'text' => "Everything arrived in perfect condition. Great service.",
-                'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review',
-                'date' => '2025-07-15'
-            ],
-            [
-                'name' => 'Peter Jones',
-                'avatar' => asset('/images/cards/review-3.png'),
-                'rating' => 4,
-                'text' => "Smooth process from quote to final delivery.",
-                'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review',
-                'date' => '2025-06-20'
-            ],
-            [
-                'name' => 'Sarah Lee',
-                'avatar' => asset('/images/cards/review-4.png'),
+                'name' => 'Mateo Arteta',
+                'avatar' => 'https://lh3.googleusercontent.com/a-/ALV-UjWJr-QwnmwKle3a0bIkfTyQ3NUSkZfw6k5gGLV9D-swgFl4-wzH=w36-h36-p-rp-mo-ba12-br100',
                 'rating' => 5,
-                'text' => "Incredibly careful with my fragile items. A+",
+                'text' => "I had an incredible experience with Golden Streets Moving Company! Aaby and his team are top-notch professionals. From start to finish, they treated my belongings with the utmost care and attention. I was impressed by how efficient they were.",
                 'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review',
-                'date' => '2025-05-11'
+                'url' => 'https://maps.app.goo.gl/EPmYRj3aPqK8v6dm8',
+                'date' => '2025-08-15'
             ],
             [
-                'name' => 'John Doe',
-                'avatar' => asset('/images/cards/review-1.png'),
+                'name' => 'Paramount Insurance and Multiservice',
+                'avatar' => 'https://lh3.googleusercontent.com/a-/ALV-UjX_b2BnYjt4JhddLZw1zUvxOGk4orJmS7IMNpLmeHszjw32kpw=w36-h36-p-rp-mo-br100',
                 'rating' => 5,
-                'text' => "The movers were professional and friendly. Highly recommend!",
+                'text' => "I recently hired Golden Streets Moving Company for my office move, and I was extremely impressed! From start to finish, the team was professional, efficient, and incredibly careful with all my office equipment.",
                 'source' => 'Google',
-                'url' => 'https://g.page/tu-listing/review', // opcional
-                'date' => '2025-08-02'
+                'url' => 'https://maps.app.goo.gl/EPmYRj3aPqK8v6dm8',
+                'date' => '2025-07-01'
+            ],
+            [
+                'name' => 'Alejandro Tarquino',
+                'avatar' => 'https://lh3.googleusercontent.com/a/ACg8ocLAd-Rp4pF8qr6Z9wdwrgFF4wtbzBNqcHHCNXO3EVc64ytPkA=w36-h36-p-rp-mo-br100',
+                'rating' => 5,
+                'text' => "I had an incredible experience with their moving service! They came to my home and did excellent work, handling everything with great attention to detail, professionalism, and care.",
+                'source' => 'Google',
+                'url' => 'https://maps.app.goo.gl/EPmYRj3aPqK8v6dm8',
+                'date' => '2025-06-10'
+            ],
+            [
+                'name' => 'Nive Gupta',
+                'avatar' => 'https://lh3.googleusercontent.com/a-/ALV-UjWXjUAya0GOSvPiqnO8s4S_WcRblIc7lHKTa3-h5EHBjoo2Ct7C=w36-h36-p-rp-mo-ba12-br100',
+                'rating' => 5,
+                'text' => "I highly recommend Aaby and his team! They took great care moving our belongings. They were friendly, fast, efficient, and communication was excellent, especially since we had several stops. Thank you so much! I would definitely contact them again for any future move.",
+                'source' => 'Google',
+                'url' => 'https://maps.app.goo.gl/EPmYRj3aPqK8v6dm8',
+                'date' => '2025-05-20'
+            ],
+            [
+                'name' => 'Aaby Moreno',
+                'avatar' => 'https://lh3.googleusercontent.com/a/ACg8ocKCCymzc5bvmQC9-MOf8YGU3_45WsjDiKL4SqDyaatsJBDVmg=w36-h36-p-rp-mo-br100',
+                'rating' => 5,
+                'text' => "The best moving company in the Gwinnett area!",
+                'source' => 'Google',
+                'url' => 'https://maps.app.goo.gl/EPmYRj3aPqK8v6dm8',
+                'date' => '2025-04-15'
+            ],
+            [
+                'name' => 'Nagarjuna Talla',
+                'avatar' => 'https://lh3.googleusercontent.com/a-/ALV-UjVjJXg9Lmyd6gI0ocV0SQEv2rCXLP661G3R1TUIuScblocb8PZv=w36-h36-p-rp-mo-br100',
+                'rating' => 5,
+                'text' => "Very kind, hardworking, very professional, and very patient. I will definitely call them again.",
+                'source' => 'Google',
+                'url' => 'https://maps.app.goo.gl/EPmYRj3aPqK8v6dm8',
+                'date' => '2025-03-10'
+            ],
+            [
+                'name' => 'Daniel Botello',
+                'avatar' => 'https://lh3.googleusercontent.com/a/ACg8ocILdTHxsh0OwUqpSw_k5jZlASxRIzFZpAfsVIl5Pq9jhGKwxg=w36-h36-p-rp-mo-br100',
+                'rating' => 5,
+                'text' => "The best movers in the area!",
+                'source' => 'Google',
+                'url' => 'https://maps.app.goo.gl/EPmYRj3aPqK8v6dm8',
+                'date' => '2025-02-05'
             ],
         ],
         // Opcional: controla el slider
