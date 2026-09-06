@@ -11,6 +11,7 @@ const props = defineProps({
 const viewModal = ref(false)
 const item = ref({});
 const newStatus = ref('')
+const resendingId = ref(null)
 
 const statusOptions = [
   { label: 'Pending', value: 'pending' },
@@ -78,6 +79,42 @@ const saveStatus = async () => {
   }
 }
 
+const resendEmail = async (quote) => {
+  resendingId.value = quote.id
+  try {
+    const url = `/api/moving-quotes/${quote.id}/resend-email`
+    const { data } = await axios.post(url)
+
+    quote.email_sent = data.email_sent
+    quote.email_sent_at = data.quote?.email_sent_at ?? quote.email_sent_at
+    if (item.value.id === quote.id) {
+      item.value.email_sent = data.email_sent
+      item.value.email_sent_at = quote.email_sent_at
+    }
+
+    if (Swal) {
+      Swal.fire({
+        icon: data.email_sent ? 'success' : 'error',
+        title: data.email_sent ? 'Email sent' : 'Error',
+        text: data.message,
+        timer: data.email_sent ? 2000 : undefined,
+        showConfirmButton: !data.email_sent,
+      })
+    }
+  } catch (error) {
+    console.error(error)
+    if (Swal) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.response?.data?.message || 'The email could not be resent.',
+      })
+    }
+  } finally {
+    resendingId.value = null
+  }
+}
+
 onMounted(() => {
   window.addEventListener('keyup', handleKeyup)
 })
@@ -93,63 +130,68 @@ onBeforeUnmount(() => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <div class="booking__table">
-                                <div class="booking__table--head-item">
-                                    ID
+                        <div class="booking__table-wrapper">
+                            <div class="booking__table">
+                                <div class="booking__table--row booking__table--row--head">
+                                    <div class="booking__table--head-item">ID</div>
+                                    <div class="booking__table--head-item">Name</div>
+                                    <div class="booking__table--head-item">Email</div>
+                                    <div class="booking__table--head-item">Date</div>
+                                    <div class="booking__table--head-item">Origin</div>
+                                    <div class="booking__table--head-item">Destination</div>
+                                    <div class="booking__table--head-item">Status</div>
+                                    <div class="booking__table--head-item">Email status</div>
+                                    <div class="booking__table--head-item">Created At</div>
                                 </div>
-                                <div class="booking__table--head-item">
-                                    Name
+                                <div
+                                    v-for="quote in quotes"
+                                    :key="quote.id"
+                                    class="booking__table--row"
+                                >
+                                    <div class="booking__table--body-item">
+                                        <button class="booking__table--body-button" @click="viewItem(quote)">
+                                            {{quote.id}}
+                                        </button>
+                                    </div>
+                                    <div class="booking__table--body-item">
+                                        <button class="booking__table--body-button" @click="viewItem(quote)">
+                                            {{quote.name}}
+                                        </button>
+                                    </div>
+                                    <div class="booking__table--body-item">
+                                        {{quote.email}}
+                                    </div>
+                                    <div class="booking__table--body-item">
+                                        {{getDate(quote.preferred_date)}}
+                                    </div>
+                                    <div class="booking__table--body-item">
+                                        {{quote.origin_address}}
+                                    </div>
+                                    <div class="booking__table--body-item">
+                                        {{quote.destination_address}}
+                                    </div>
+                                    <div class="booking__table--body-item">
+                                        <span class="booking__table--body-chip" :class="`booking__table--body-chip--${quote.status}`">
+                                            {{quote.status}}
+                                        </span>
+                                    </div>
+                                    <div class="booking__table--body-item">
+                                        <span class="booking__table--body-chip" :class="quote.email_sent ? 'booking__table--body-chip--sent' : 'booking__table--body-chip--failed'">
+                                            {{ quote.email_sent ? 'Sent' : 'Failed' }}
+                                        </span>
+                                        <button
+                                            class="booking__table--body-resend"
+                                            :disabled="resendingId === quote.id"
+                                            @click="resendEmail(quote)"
+                                        >
+                                            {{ resendingId === quote.id ? 'Sending...' : 'Resend' }}
+                                        </button>
+                                    </div>
+                                    <div class="booking__table--body-item">
+                                        {{getDate(quote.created_at)}}
+                                    </div>
                                 </div>
-                                <div class="booking__table--head-item">
-                                    Email
-                                </div>
-                                <div class="booking__table--head-item">
-                                    Date
-                                </div>
-                                <div class="booking__table--head-item">
-                                    Origin
-                                </div>
-                                <div class="booking__table--head-item">
-                                    Destination
-                                </div>
-                                <div class="booking__table--head-item">
-                                    Status
-                                </div>
-                                <div class="booking__table--head-item">
-                                    Created At
-                                </div>
-                            <template v-for="quote in quotes">
-                                <div class="booking__table--body-item">
-                                    <button class="booking__table--body-button" @click="viewItem(quote)">
-                                        {{quote.id}}
-                                    </button>
-                                </div>
-                                <div class="booking__table--body-item">
-                                    <button class="booking__table--body-button" @click="viewItem(quote)">
-                                        {{quote.name}}
-                                    </button>
-                                </div>
-                                <div class="booking__table--body-item">
-                                    {{quote.email}}
-                                </div>
-                                <div class="booking__table--body-item">
-                                    {{getDate(quote.preferred_date)}}
-                                </div>
-                                <div class="booking__table--body-item">
-                                    {{quote.origin_address}}
-                                </div>
-                                <div class="booking__table--body-item">
-                                    {{quote.destination_address}}
-                                </div>
-                                <div class="booking__table--body-item">
-                                    <span class="booking__table--body-chip" :class="`booking__table--body-chip--${quote.status}`">
-                                        {{quote.status}}
-                                    </span>
-                                </div>
-                                <div class="booking__table--body-item">
-                                    {{getDate(quote.created_at)}}
-                                </div>
-                            </template>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -189,6 +231,21 @@ onBeforeUnmount(() => {
                 <div class="booking__modal--row">
                     <span class="booking__modal--label">Move type:</span>
                     <span class="booking__modal--value">{{ item.move_type || '-' }}</span>
+                </div>
+                <div class="booking__modal--row">
+                    <span class="booking__modal--label">Email sent:</span>
+                    <span class="booking__modal--value">
+                        <span class="booking__table--body-chip" :class="item.email_sent ? 'booking__table--body-chip--sent' : 'booking__table--body-chip--failed'">
+                            {{ item.email_sent ? 'Sent' : 'Failed' }}
+                        </span>
+                        <button
+                            class="booking__table--body-resend"
+                            :disabled="resendingId === item.id"
+                            @click="resendEmail(item)"
+                        >
+                            {{ resendingId === item.id ? 'Sending...' : 'Resend' }}
+                        </button>
+                    </span>
                 </div>
 
                 <div class="booking__modal--section-title">Status</div>

@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::put('/api/moving-quotes/{movingQuote}', [MovingQuoteController::class, 'update']);
+    Route::post('/api/moving-quotes/{movingQuote}/resend-email', [MovingQuoteController::class, 'resendEmail']);
 });
 
 

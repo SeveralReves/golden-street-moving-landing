@@ -29,6 +29,8 @@ class MovingQuote extends Model
         'packing_service',
         'comments',
         'status',
+        'email_sent',
+        'email_sent_at',
     ];
 
     protected $casts = [
@@ -36,5 +38,7 @@ class MovingQuote extends Model
         'origin_elevator' => 'boolean',
         'destination_elevator' => 'boolean',
         'packing_service' => 'boolean',
+        'email_sent' => 'boolean',
+        'email_sent_at' => 'datetime',
     ];
 }

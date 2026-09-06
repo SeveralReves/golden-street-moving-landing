@@ -65,6 +65,9 @@ class MovingQuoteController extends Controller
 
         $sent = ResendService::sendLead($quote);
 
+        $quote->email_sent = $sent;
+        $quote->email_sent_at = now();
+        $quote->save();
 
         return response()->json([
             'message' => 'Quote request saved successfully.',
@@ -86,5 +89,20 @@ class MovingQuoteController extends Controller
             'message' => 'Quote status updated successfully.',
             'quote'   => $movingQuote,
         ]);
+    }
+
+    public function resendEmail(MovingQuote $movingQuote)
+    {
+        $sent = ResendService::sendLead($movingQuote);
+
+        $movingQuote->email_sent = $sent;
+        $movingQuote->email_sent_at = now();
+        $movingQuote->save();
+
+        return response()->json([
+            'message' => $sent ? 'Email resent successfully.' : 'Email could not be sent.',
+            'email_sent' => $sent,
+            'quote' => $movingQuote,
+        ], $sent ? 200 : 502);
     }
 }
