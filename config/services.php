@@ -37,4 +37,8 @@ return [
         'from_name'   => env('RESEND_FROM_NAME', 'Golden Street Moving'),
         'to_email'    => env('RESEND_TO_EMAIL', 'gabrielalexander2@gmail.com'),
     ],
+
+    'google_analytics' => [
+        'id' => env('GOOGLE_ANALYTICS_ID'),
+    ],
 ];
