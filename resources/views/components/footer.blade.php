@@ -68,8 +68,8 @@
     </div>
 
     <div class="footer__bottom">
-      <p>© {{ date('Y') }} Golden Street Moving Company. All rights reserved.</p>
-      <p>Developed by <a href="https://severalreves.lat" target="_blank">Severalreves</a></p>
+      <p>© {{ date('Y') }} Golden Streets Moving Company. All rights reserved. </p>
+      <p>Developed by <a href="https://svrdatatech.lat/" target="_blank">SVR DATA TECHNOLOGIES</a></p>
     </div>
   </div>
 </footer>

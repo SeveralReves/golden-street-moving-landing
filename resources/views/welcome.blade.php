@@ -9,6 +9,24 @@
             'url' => '#booking',
             'title' => 'Book your date now'
         ],
+        'stats' => [
+            [
+                'icon' => 'stars',
+                'count' => 5,
+                'title' => '5.0 rating',
+                'subtitle' => 'on Google',
+            ],
+            [
+                'icon' => 'clock',
+                'title' => 'Same-day movers',
+                'subtitle' => 'available',
+            ],
+            [
+                'icon' => 'shield',
+                'title' => 'Free wrapping protection',
+                'subtitle' => 'in every move',
+            ],
+        ],
     ])
 
     @include('components.section-benefits', [

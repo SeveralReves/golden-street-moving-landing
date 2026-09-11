@@ -31,7 +31,12 @@
     $button = [
       'title' => 'Book your move',
       'url' => '/#booking',
-    ]
+    ];
+
+    $phone = [
+      'display' => '(770) 589-9512',
+      'tel' => '+17705899512',
+    ];
 @endphp
 
 <header class="header" x-data="{ mobileOpen: false }" @keydown.escape.window="mobileOpen = false">
@@ -49,6 +54,12 @@
       </ul>
     </nav>
     <div class="header__actions">
+      <a href="tel:{{ $phone['tel'] }}" title="Call {{ $phone['display'] }}" class="header__phone">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="header__phone-icon">
+          <path d="M4.5 4h3.5l1.5 4.5-2 1.5a12 12 0 0 0 6.5 6.5l1.5-2 4.5 1.5V19a2 2 0 0 1-2 2A16.5 16.5 0 0 1 2.5 6.5 2 2 0 0 1 4.5 4Z" />
+        </svg>
+        <span class="header__phone-number">{{ $phone['display'] }}</span>
+      </a>
       <a href="{{ $button['url'] }}" title="{{ $button['title'] }}" class="button__primary header__cta">
         {{ $button['title'] }}
       </a>
