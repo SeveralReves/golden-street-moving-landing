@@ -1,5 +1,5 @@
 @php
-  $image = asset('/images/hero-1.jpeg');
+  $image = !empty($image ?? null) ? $image : asset('/images/hero-1.jpeg');
 
   $icons = [
     'stars' => '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .587l3.668 7.431 8.207 1.193-5.938 5.79 1.402 8.166L12 18.896l-7.339 3.271 1.402-8.166L.125 9.211l8.207-1.193z"/></svg>',

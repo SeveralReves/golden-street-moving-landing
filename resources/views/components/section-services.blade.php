@@ -5,13 +5,20 @@
         {{ $title }}
       </h2>
     @endif
+    @if (!empty($description ?? null))
+      <p class="section__services--description" data-aos="fade-up" data-aos-duration="1500">
+        {{ $description }}
+      </p>
+    @endif
     <div class="section__services--content">
       @foreach ($cards as $item)
         <div class="card__service--item"  data-aos="fade-up" data-aos-duration="1500">
             <article class="card__service" >
-              <picture class="card__service--picture">
-                <img src="{{ $item['image'] }}" alt="image {{ $item['title'] }}" title="image {{ $item['title'] }}" class="card__service--image">
-              </picture>
+              @if (!empty($item['image'] ?? null))
+                <picture class="card__service--picture">
+                  <img src="{{ $item['image'] }}" alt="image {{ $item['title'] ?? '' }}" title="image {{ $item['title'] ?? '' }}" class="card__service--image">
+                </picture>
+              @endif
               <div class="card__service--content">
                 @if (isset($item['title']) && !empty($item['title']))
                   <h3 class="card__service--title">

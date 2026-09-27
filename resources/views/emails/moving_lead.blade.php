@@ -54,26 +54,39 @@
                             </tr>
 
                             <tr>
+                                <td style="padding:6px 0; font-weight:bold;">Phone:</td>
+                                <td style="padding:6px 0;">
+                                    {{ $quote->phone ?? '—' }}
+                                    @if($quote->sms_consent) (OK to text) @endif
+                                </td>
+                            </tr>
+
+                            <tr>
                                 <td style="padding:6px 0; font-weight:bold;">Email:</td>
-                                <td style="padding:6px 0;">{{ $quote->email ?? '' }}</td>
+                                <td style="padding:6px 0;">{{ $quote->email ?? '—' }}</td>
                             </tr>
 
                             <tr>
-                                <td style="padding:6px 0; font-weight:bold;">Origin Address:</td>
-                                <td style="padding:6px 0;">{{ $quote->origin_address ?? '' }}</td>
+                                <td style="padding:6px 0; font-weight:bold;">Origin ZIP:</td>
+                                <td style="padding:6px 0;">{{ $quote->origin_zip ?? $quote->origin_address ?? '—' }}</td>
                             </tr>
 
                             <tr>
-                                <td style="padding:6px 0; font-weight:bold;">Destination Address:</td>
-                                <td style="padding:6px 0;">{{ $quote->destination_address ?? '' }}</td>
+                                <td style="padding:6px 0; font-weight:bold;">Destination ZIP:</td>
+                                <td style="padding:6px 0;">{{ $quote->destination_zip ?? $quote->destination_address ?? '—' }}</td>
                             </tr>
 
                             <tr>
                                 <td style="padding:6px 0; font-weight:bold;">Preferred Date:</td>
-                                <td style="padding:6px 0;">{{ $quote->preferred_date 
-                                    ? \Carbon\Carbon::parse($quote->preferred_date)->format('F j, Y') 
-                                    : '—' 
-                                }}
+                                <td style="padding:6px 0;">
+                                    @if($quote->date_flexible)
+                                        Flexible
+                                    @else
+                                        {{ $quote->preferred_date
+                                            ? \Carbon\Carbon::parse($quote->preferred_date)->format('F j, Y')
+                                            : '—'
+                                        }}
+                                    @endif
                                 </td>
                             </tr>
 
@@ -84,7 +97,12 @@
 
                             <tr>
                                 <td style="padding:6px 0; font-weight:bold;">Move Type:</td>
-                                <td style="padding:6px 0;">{{ $quote->move_type ?? '' }}</td>
+                                <td style="padding:6px 0;">{{ $quote->move_type ?? '—' }}</td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:6px 0; font-weight:bold;">Bedrooms:</td>
+                                <td style="padding:6px 0;">{{ $quote->bedrooms ?? '—' }}</td>
                             </tr>
 
                             {{-- ORIGIN --}}
@@ -130,8 +148,22 @@
 
                             <tr>
                                 <td style="padding:6px 0; font-weight:bold;">Packing Service:</td>
-                                <td style="padding:6px 0;">{{ $quote->packing_service ?? '—' }}</td>
+                                <td style="padding:6px 0;">{{ ($quote->packing_service ?? false) ? 'Yes' : 'No' }}</td>
                             </tr>
+
+                            <tr>
+                                <td style="padding:6px 0; font-weight:bold;">Special Items:</td>
+                                <td style="padding:6px 0;">
+                                    {{ !empty($quote->special_items) ? implode(', ', $quote->special_items) : 'None' }}
+                                </td>
+                            </tr>
+
+                            @if(!empty($quote->photos))
+                            <tr>
+                                <td style="padding:6px 0; font-weight:bold;">Photos:</td>
+                                <td style="padding:6px 0;">{{ count($quote->photos) }} attached</td>
+                            </tr>
+                            @endif
 
                             {{-- COMMENTS --}}
                             <tr>

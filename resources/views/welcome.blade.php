@@ -3,8 +3,9 @@
 @section('content')
 
     @include('components.hero', [
-        'title' => 'Your move is easy, safe, and on time.',
-        'description' => 'We are a professional moving service that ensures a stress-free experience from start to finish. Our team of experts handles everything with care and precision.',
+        'title' => $hero['title'],
+        'description' => $hero['description'],
+        'image' => $hero['image'],
         'button' => [
             'url' => '#booking',
             'title' => 'Book your date now'
@@ -51,36 +52,9 @@
     ])
 
     @include('components.section-services', [
-        'title' => 'Our Moving Services',
-        'cards' => [
-            [
-                'title' => 'Residential Moving',
-                'description' => 'Seamless home transitions, handled with care and precision by our expert team.',
-                'image' => asset('/images/cards/services-1.jpeg'),
-                'button' => [
-                    'title' => 'Request this service',
-                    'url' => '#booking'
-                ]
-            ],
-            [
-                'title' => 'Corporate Moving',
-                'description' => 'Efficiency and minimal business disruption for your office relocation.',
-                'image' => asset('/images/cards/services-2.png'),
-                'button' => [
-                    'title' => 'Request this service',
-                    'url' => '#booking'
-                ]
-            ],
-            [
-                'title' => 'Packing Services',
-                'description' => 'Professional packing and unpacking to save you time and protect your belongings.',
-                'image' => asset('/images/cards/services-3.png'),
-                'button' => [
-                    'title' => 'Request this service',
-                    'url' => '#booking'
-                ]
-            ],
-        ]
+        'title' => $services['title'],
+        'description' => $services['description'],
+        'cards' => $services['cards'],
     ])
 
     @include('components.section-booking', [
@@ -94,39 +68,20 @@
     ])
 
     @include('components.section-faq', [
-        'title' => 'Frequently Asked Questions',
-        'description' => "Have questions? We've got answers.",
+        'title' => $faq['title'],
+        'description' => $faq['description'],
+        'image' => $faq['image'] ?? null,
         'cta' => [
             'text' => 'Contact Us',
             'url'  => '#booking'
         ],
-        'faqs' => [
-            [
-            'q' => 'How is the price for my move determined?',
-            'a' => 'Our pricing is based on an hourly rate which includes the truck, equipment and moving crew. We give you a detailed quote upfront with no hidden fees.'
-            ],
-            [
-            'q' => 'How far in advance should I schedule my move?',
-            'a' => 'We recommend 2–4 weeks in advance to secure your preferred date. For peak season, book earlier.'
-            ],
-            [
-            'q' => 'What is included in your standard moving service?',
-            'a' => 'Truck, crew, loading/unloading, basic protection blankets, and standard furniture assembly/disassembly.'
-            ],
-            [
-            'q' => 'What kind of insurance coverage do you offer?',
-            'a' => 'Basic valuation is included. Full-value protection is available upon request.'
-            ],
-            [
-            'q' => 'What is your policy on rescheduling or cancellation?',
-            'a' => 'You can reschedule up to 48 hours before the job without fees. See full policy in your quote.'
-            ],
-        ]
+        'faqs' => $faq['faqs'],
     ])
 
     @include('components.banner', [
-        'title' => 'Out-of-state transfers',
-        'description' => 'Enjoy complete coverage, real-time tracking, and the peace of mind that your belongings are in good hands.'
+        'title' => $transfers['title'],
+        'description' => $transfers['description'],
+        'image' => $transfers['image'],
     ])
     @include('components.section-reviews', [
         'title' => "Don't just take our word for it",

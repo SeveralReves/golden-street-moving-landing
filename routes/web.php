@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MovingQuoteController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ContentSectionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -20,9 +22,7 @@ use Illuminate\Support\Facades\Artisan;
 Route::get('/legals', function () {
     return view('legal');
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PageController::class, 'home']);
 
 Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -33,6 +33,11 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/api/moving-quotes/{movingQuote}', [MovingQuoteController::class, 'update']);
     Route::post('/api/moving-quotes/{movingQuote}/resend-email', [MovingQuoteController::class, 'resendEmail']);
+});
+
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::get('/dashboard/content', [ContentSectionController::class, 'index'])->name('dashboard.content');
+    Route::put('/api/content-sections/{key}', [ContentSectionController::class, 'update']);
 });
 
 

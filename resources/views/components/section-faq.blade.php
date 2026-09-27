@@ -8,6 +8,12 @@
       <p class="section__faq--description">{{ $description }}</p>
     @endif
 
+    @if (!empty($image ?? null))
+      <picture class="section__faq--picture">
+        <img src="{{ $image }}" alt="image {{ $title ?? 'FAQ' }}" title="image {{ $title ?? 'FAQ' }}" class="section__faq--image">
+      </picture>
+    @endif
+
     @if (!empty($faqs ?? []))
       <div class="section__faq--accordion" role="list">
         @foreach ($faqs as $i => $item)
@@ -24,14 +30,14 @@
               role="button"
               aria-expanded="{{ $i===0 ? 'true' : 'false' }}"
             >
-              <span>{{ $item['q'] ?? '' }}</span>
+              <span>{{ $item['question'] ?? $item['q'] ?? '' }}</span>
               <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" />
               </svg>
             </summary>
 
             <div class="faq__answer" id="{{ $aid }}" role="region" aria-labelledby="{{ $qid }}">
-              <p>{{ $item['a'] ?? '' }}</p>
+              <p>{{ $item['answer'] ?? $item['a'] ?? '' }}</p>
             </div>
           </details>
         @endforeach

@@ -33,6 +33,7 @@ const components = {
   ExampleComponent: () => import('./components/ExampleComponent.vue'),
   Booking: () => import('./components/Booking.vue'),
   BookingTable: () => import('./components/BookingTable.vue'),
+  ContentManager: () => import('./components/ContentManager.vue'),
 }
 
 document.addEventListener('DOMContentLoaded', () => {
