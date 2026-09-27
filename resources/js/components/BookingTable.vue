@@ -117,6 +117,14 @@ const resendEmail = async (quote) => {
 
 onMounted(() => {
   window.addEventListener('keyup', handleKeyup)
+
+  // Supports the "View this lead" link from the lead notification email
+  // (/dashboard#quote-123) by opening that lead's modal directly.
+  const match = window.location.hash.match(/^#quote-(\d+)$/)
+  if (match) {
+    const quote = props.quotes.find((q) => String(q.id) === match[1])
+    if (quote) viewItem(quote)
+  }
 })
 onBeforeUnmount(() => {
   window.removeEventListener('keyup', handleKeyup)
@@ -221,8 +229,12 @@ onBeforeUnmount(() => {
                     <span class="booking__modal--value">{{ item.phone || '-' }}</span>
                 </div>
                 <div class="booking__modal--row">
+                    <span class="booking__modal--label">SMS ok:</span>
+                    <span class="booking__modal--value">{{ item.sms_consent ? 'Yes' : 'No' }}</span>
+                </div>
+                <div class="booking__modal--row">
                     <span class="booking__modal--label">Preferred date:</span>
-                    <span class="booking__modal--value">{{ getDate(item.preferred_date) }}</span>
+                    <span class="booking__modal--value">{{ item.date_flexible ? 'Flexible' : getDate(item.preferred_date) }}</span>
                 </div>
                 <div class="booking__modal--row">
                     <span class="booking__modal--label">Schedule:</span>
@@ -231,6 +243,10 @@ onBeforeUnmount(() => {
                 <div class="booking__modal--row">
                     <span class="booking__modal--label">Move type:</span>
                     <span class="booking__modal--value">{{ item.move_type || '-' }}</span>
+                </div>
+                <div class="booking__modal--row">
+                    <span class="booking__modal--label">Bedrooms:</span>
+                    <span class="booking__modal--value">{{ item.bedrooms || '-' }}</span>
                 </div>
                 <div class="booking__modal--row">
                     <span class="booking__modal--label">Email sent:</span>
@@ -263,8 +279,8 @@ onBeforeUnmount(() => {
 
                 <div class="booking__modal--section-title">Origin</div>
                 <div class="booking__modal--row">
-                    <span class="booking__modal--label">Address:</span>
-                    <span class="booking__modal--value">{{ item.origin_address || '-' }}</span>
+                    <span class="booking__modal--label">ZIP:</span>
+                    <span class="booking__modal--value">{{ item.origin_zip || item.origin_address || '-' }}</span>
                 </div>
                 <div class="booking__modal--row">
                     <span class="booking__modal--label">Floor:</span>
@@ -279,8 +295,8 @@ onBeforeUnmount(() => {
 
                 <div class="booking__modal--section-title">Destination</div>
                 <div class="booking__modal--row">
-                    <span class="booking__modal--label">Address:</span>
-                    <span class="booking__modal--value">{{ item.destination_address || '-' }}</span>
+                    <span class="booking__modal--label">ZIP:</span>
+                    <span class="booking__modal--value">{{ item.destination_zip || item.destination_address || '-' }}</span>
                 </div>
                 <div class="booking__modal--row">
                     <span class="booking__modal--label">Floor:</span>
@@ -301,6 +317,18 @@ onBeforeUnmount(() => {
                     </span>
                 </div>
                 <div class="booking__modal--row">
+                    <span class="booking__modal--label">Special items:</span>
+                    <span class="booking__modal--value">{{ (item.special_items || []).join(', ') || 'None' }}</span>
+                </div>
+                <div class="booking__modal--row" v-if="(item.photos || []).length">
+                    <span class="booking__modal--label">Photos:</span>
+                    <span class="booking__modal--value">
+                        <a v-for="(photo, idx) in item.photos" :key="idx" :href="photo" target="_blank" rel="noopener" style="margin-right: 8px;">
+                            Photo {{ idx + 1 }}
+                        </a>
+                    </span>
+                </div>
+                <div class="booking__modal--row">
                     <span class="booking__modal--label">Comments:</span>
                     <span class="booking__modal--value">{{ item.comments || '-' }}</span>
                 </div>
@@ -308,6 +336,22 @@ onBeforeUnmount(() => {
                     <span class="booking__modal--label">Created:</span>
                     <span class="booking__modal--value">{{ getDate(item.created_at) }}</span>
                 </div>
+
+                <template v-if="item.estimate_total">
+                    <div class="booking__modal--section-title">Estimate (internal only)</div>
+                    <div class="booking__modal--row">
+                        <span class="booking__modal--label">Range:</span>
+                        <span class="booking__modal--value">${{ item.estimate_range_low }} – ${{ item.estimate_range_high }}</span>
+                    </div>
+                    <div class="booking__modal--row">
+                        <span class="booking__modal--label">Hours:</span>
+                        <span class="booking__modal--value">{{ item.estimate_hours }}</span>
+                    </div>
+                    <div class="booking__modal--row" v-if="(item.estimate_breakdown?.unconfirmed_used || []).length">
+                        <span class="booking__modal--label">Unconfirmed values used:</span>
+                        <span class="booking__modal--value">{{ item.estimate_breakdown.unconfirmed_used.join(', ') }}</span>
+                    </div>
+                </template>
                 </div>
 
                 <div class="booking__modal--footer">
