@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\MovingQuote;
+use App\Models\PricingSetting;
 use Illuminate\Support\Facades\Log;
 use Resend;
 
@@ -20,9 +21,15 @@ class ResendService
             return false;
         }
 
+        $unconfirmedKeys = $data->estimate_breakdown['unconfirmed_used'] ?? [];
+        $unconfirmedLabels = $unconfirmedKeys
+            ? PricingSetting::whereIn('key', $unconfirmedKeys)->pluck('label')->all()
+            : [];
+
         // Render del template Blade
         $body = view('emails.moving_lead', [
             'quote' => $data,
+            'unconfirmedLabels' => $unconfirmedLabels,
         ])->render();
 
         try {

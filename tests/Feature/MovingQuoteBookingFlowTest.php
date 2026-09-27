@@ -101,6 +101,57 @@ class MovingQuoteBookingFlowTest extends TestCase
         $this->assertSame(['piano', 'safe'], $quote->special_items);
     }
 
+    /**
+     * Hard business requirement: the estimate is calculated and stored on
+     * the lead, but must never be visible to the public form's own response.
+     */
+    public function test_completing_a_quote_calculates_and_stores_an_estimate_that_is_never_returned_to_the_public_caller(): void
+    {
+        \App\Models\PricingSetting::create([
+            'key' => 'hourly_rate', 'value' => 140, 'unit' => 'usd', 'label' => 'Hourly rate', 'group' => 'rates', 'confirmed' => true,
+        ]);
+        \App\Models\PricingSetting::create([
+            'key' => 'hours_2', 'value' => 4, 'unit' => 'hours', 'label' => 'Base hours - 2 bedrooms', 'group' => 'base_hours', 'confirmed' => true,
+        ]);
+        \App\Models\PricingSetting::create([
+            'key' => 'min_hours', 'value' => 2, 'unit' => 'hours', 'label' => 'Minimum billable hours', 'group' => 'base_hours', 'confirmed' => false,
+        ]);
+        \App\Models\PricingSetting::create([
+            'key' => 'range_pct', 'value' => 15, 'unit' => 'percent', 'label' => 'Estimate range', 'group' => 'rates', 'confirmed' => false,
+        ]);
+
+        $quote = MovingQuote::create([
+            'phone' => '7705551234',
+            'schedule' => 'morning',
+            'origin_zip' => '30301',
+            'destination_zip' => '30303',
+            'status' => 'pending',
+        ]);
+
+        $response = $this->post("/api/moving-quotes/{$quote->id}/complete", [
+            'move_type' => 'house',
+            'bedrooms' => '2',
+            'origin_floor' => 'ground',
+            'origin_elevator' => '0',
+            'destination_floor' => 'ground',
+            'destination_elevator' => '0',
+            'packing_service' => '0',
+        ]);
+
+        $response->assertStatus(200);
+
+        // Stored on the lead...
+        $quote->refresh();
+        $this->assertSame('560.00', $quote->estimate_total);
+        $this->assertNotEmpty($quote->estimate_breakdown['unconfirmed_used']);
+
+        // ...but absent from every key of the public JSON response.
+        $body = $response->json();
+        foreach (MovingQuote::PUBLIC_HIDDEN_FIELDS as $field) {
+            $this->assertArrayNotHasKey($field, $body['quote']);
+        }
+    }
+
     public function test_step_two_stores_uploaded_photos(): void
     {
         Storage::fake('public');

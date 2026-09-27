@@ -42,6 +42,35 @@
                     </td>
                 </tr>
 
+                @if(!is_null($quote->estimate_total))
+                {{-- Estimate (internal use only, never shown to the customer) --}}
+                <tr>
+                    <td style="padding:0 24px 20px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                               style="border-collapse:collapse; background-color:#fffbeb; border:1px solid #fde68a; border-radius:8px;">
+                            <tr>
+                                <td style="padding:16px;">
+                                    <p style="margin:0 0 4px; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:.04em; color:#92400e;">
+                                        Internal estimate — do not share as-is
+                                    </p>
+                                    <p style="margin:0 0 8px; font-size:24px; font-weight:bold; color:#1b1b1b;">
+                                        ${{ number_format($quote->estimate_range_low, 0) }} – ${{ number_format($quote->estimate_range_high, 0) }}
+                                    </p>
+                                    <p style="margin:0; font-size:13px; color:#555;">
+                                        {{ $quote->estimate_hours }} hours @
+                                        ${{ $quote->estimate_breakdown['rate'] ?? '—' }}/hr
+                                        (target {{ $quote->estimate_breakdown['range_pct'] ?? '—' }}% range)
+                                        @if(!is_null($quote->estimate_breakdown['miles'] ?? null))
+                                            &middot; {{ $quote->estimate_breakdown['miles'] }} miles (straight-line, origin ZIP to destination ZIP)
+                                        @endif
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                @endif
+
                 {{-- Main Data --}}
                 <tr>
                     <td style="padding:0 24px 20px;">
@@ -181,6 +210,60 @@
                         </table>
                     </td>
                 </tr>
+
+                @if(!is_null($quote->estimate_total))
+                {{-- Estimate breakdown --}}
+                <tr>
+                    <td style="padding:0 24px 20px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                               style="border-collapse:collapse; font-size:14px; color:#333;">
+                            <tr>
+                                <td colspan="2" style="padding:14px 0 4px; font-weight:bold; border-top:1px solid #eee;">
+                                    Estimate Breakdown
+                                </td>
+                            </tr>
+                            @foreach($quote->estimate_breakdown['breakdown'] ?? [] as $line)
+                            <tr>
+                                <td style="padding:4px 0; color:#555;">{{ $line['label'] }}</td>
+                                <td style="padding:4px 0; text-align:right;">${{ number_format($line['amount'], 2) }}</td>
+                            </tr>
+                            @endforeach
+                            <tr>
+                                <td style="padding:8px 0; font-weight:bold; border-top:1px solid #eee;">Total</td>
+                                <td style="padding:8px 0; font-weight:bold; text-align:right; border-top:1px solid #eee;">
+                                    ${{ number_format($quote->estimate_total, 2) }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                @if(!empty($unconfirmedLabels ?? []))
+                <tr>
+                    <td style="padding:0 24px 20px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                               style="border-collapse:collapse; background-color:#fef2f2; border:1px solid #fecaca; border-radius:8px;">
+                            <tr>
+                                <td style="padding:14px 16px; font-size:13px; color:#991b1b;">
+                                    This estimate uses {{ count($unconfirmedLabels) }} value{{ count($unconfirmedLabels) === 1 ? '' : 's' }} you haven't confirmed yet:
+                                    <strong>{{ implode(', ', $unconfirmedLabels) }}</strong>.
+                                    Review it before giving it to the customer.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                @endif
+
+                <tr>
+                    <td style="padding:0 24px 24px;">
+                        <a href="{{ route('dashboard') }}#quote-{{ $quote->id }}"
+                           style="display:inline-block; background-color:#1b1b1b; color:#ffffff; text-decoration:none; padding:10px 18px; border-radius:6px; font-size:13px; font-weight:bold;">
+                            View this lead in the admin dashboard
+                        </a>
+                    </td>
+                </tr>
+                @endif
 
                 {{-- Footer --}}
                 <tr>

@@ -4,11 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\MovingQuote;
 use Illuminate\Http\Request;
+use App\Services\EstimatorService;
 use App\Services\ResendService;
+use App\Services\ZipDistanceService;
 use Illuminate\Support\Facades\Storage;
 
 class MovingQuoteController extends Controller
 {
+    /**
+     * The estimate is calculated for every lead but is a hard business
+     * requirement that it never reaches the public form. This strips it
+     * from a model before it's returned to the customer-facing API, unless
+     * the (currently off) config flag turns that on for the future.
+     */
+    private function publicQuotePayload(MovingQuote $quote): array
+    {
+        $data = $quote->toArray();
+
+        if (! config('estimator.show_estimate_to_customer')) {
+            $data = collect($data)->except(MovingQuote::PUBLIC_HIDDEN_FIELDS)->all();
+        }
+
+        return $data;
+    }
+
     /**
      * Step 1 of the booking form: contact info + date.
      * Saved immediately so the lead is recoverable even if the visitor
@@ -55,7 +74,7 @@ class MovingQuoteController extends Controller
         return response()->json([
             'message' => 'Quote request saved successfully.',
             'email_sent' => $sent,
-            'quote' => $quote,
+            'quote' => $this->publicQuotePayload($quote),
         ], 201);
     }
 
@@ -105,6 +124,32 @@ class MovingQuoteController extends Controller
             'comments' => $validated['comments'] ?? null,
             'photos' => $photoPaths,
         ]);
+
+        // Straight-line distance between the ZIPs collected at step 1. Falls
+        // back to null (no travel fee) when either ZIP isn't in the dataset,
+        // instead of guessing.
+        $miles = ZipDistanceService::milesBetween($movingQuote->origin_zip, $movingQuote->destination_zip);
+
+        // Same EstimatorService the admin simulator uses, so the numbers can
+        // never drift apart. The result is only ever stored on the lead and
+        // sent to the owner's inbox, never returned to this endpoint's caller.
+        $estimate = EstimatorService::fromDatabase()->estimate([
+            'move_type' => $validated['move_type'],
+            'bedrooms' => $validated['bedrooms'],
+            'origin_floor' => $validated['origin_floor'],
+            'origin_elevator' => $validated['origin_elevator'],
+            'destination_floor' => $validated['destination_floor'],
+            'destination_elevator' => $validated['destination_elevator'],
+            'packing_service' => $validated['packing_service'],
+            'special_items' => $validated['special_items'] ?? [],
+            'miles' => $miles,
+        ]);
+
+        $movingQuote->estimate_total = $estimate['total'];
+        $movingQuote->estimate_range_low = $estimate['range_low'];
+        $movingQuote->estimate_range_high = $estimate['range_high'];
+        $movingQuote->estimate_hours = $estimate['hours'];
+        $movingQuote->estimate_breakdown = $estimate;
         $movingQuote->save();
 
         $sent = ResendService::sendLead($movingQuote);
@@ -116,7 +161,7 @@ class MovingQuoteController extends Controller
         return response()->json([
             'message' => 'Quote request completed successfully.',
             'email_sent' => $sent,
-            'quote' => $movingQuote,
+            'quote' => $this->publicQuotePayload($movingQuote),
         ]);
     }
 

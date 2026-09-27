@@ -34,6 +34,7 @@ const components = {
   Booking: () => import('./components/Booking.vue'),
   BookingTable: () => import('./components/BookingTable.vue'),
   ContentManager: () => import('./components/ContentManager.vue'),
+  PricingDashboard: () => import('./components/PricingDashboard.vue'),
 }
 
 document.addEventListener('DOMContentLoaded', () => {

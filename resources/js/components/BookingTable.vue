@@ -117,6 +117,14 @@ const resendEmail = async (quote) => {
 
 onMounted(() => {
   window.addEventListener('keyup', handleKeyup)
+
+  // Supports the "View this lead" link from the lead notification email
+  // (/dashboard#quote-123) by opening that lead's modal directly.
+  const match = window.location.hash.match(/^#quote-(\d+)$/)
+  if (match) {
+    const quote = props.quotes.find((q) => String(q.id) === match[1])
+    if (quote) viewItem(quote)
+  }
 })
 onBeforeUnmount(() => {
   window.removeEventListener('keyup', handleKeyup)
@@ -328,6 +336,22 @@ onBeforeUnmount(() => {
                     <span class="booking__modal--label">Created:</span>
                     <span class="booking__modal--value">{{ getDate(item.created_at) }}</span>
                 </div>
+
+                <template v-if="item.estimate_total">
+                    <div class="booking__modal--section-title">Estimate (internal only)</div>
+                    <div class="booking__modal--row">
+                        <span class="booking__modal--label">Range:</span>
+                        <span class="booking__modal--value">${{ item.estimate_range_low }} – ${{ item.estimate_range_high }}</span>
+                    </div>
+                    <div class="booking__modal--row">
+                        <span class="booking__modal--label">Hours:</span>
+                        <span class="booking__modal--value">{{ item.estimate_hours }}</span>
+                    </div>
+                    <div class="booking__modal--row" v-if="(item.estimate_breakdown?.unconfirmed_used || []).length">
+                        <span class="booking__modal--label">Unconfirmed values used:</span>
+                        <span class="booking__modal--value">{{ item.estimate_breakdown.unconfirmed_used.join(', ') }}</span>
+                    </div>
+                </template>
                 </div>
 
                 <div class="booking__modal--footer">

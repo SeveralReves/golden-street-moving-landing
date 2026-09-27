@@ -38,6 +38,11 @@ class MovingQuote extends Model
         'status',
         'email_sent',
         'email_sent_at',
+        'estimate_total',
+        'estimate_range_low',
+        'estimate_range_high',
+        'estimate_hours',
+        'estimate_breakdown',
     ];
 
     protected $casts = [
@@ -51,5 +56,22 @@ class MovingQuote extends Model
         'photos' => 'array',
         'email_sent' => 'boolean',
         'email_sent_at' => 'datetime',
+        'estimate_total' => 'decimal:2',
+        'estimate_range_low' => 'decimal:2',
+        'estimate_range_high' => 'decimal:2',
+        'estimate_hours' => 'decimal:2',
+        'estimate_breakdown' => 'array',
+    ];
+
+    /**
+     * Fields the public booking API must never return. The estimate is only
+     * ever shown in the admin dashboard and the lead notification email.
+     */
+    public const PUBLIC_HIDDEN_FIELDS = [
+        'estimate_total',
+        'estimate_range_low',
+        'estimate_range_high',
+        'estimate_hours',
+        'estimate_breakdown',
     ];
 }

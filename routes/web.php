@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MovingQuoteController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContentSectionController;
+use App\Http\Controllers\PricingSettingController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -38,6 +39,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/dashboard/content', [ContentSectionController::class, 'index'])->name('dashboard.content');
     Route::put('/api/content-sections/{key}', [ContentSectionController::class, 'update']);
+
+    Route::get('/dashboard/pricing', [PricingSettingController::class, 'index'])->name('dashboard.pricing');
+    Route::put('/api/pricing-settings', [PricingSettingController::class, 'update']);
+    Route::post('/api/pricing-settings/simulate', [PricingSettingController::class, 'simulate']);
 });
 
 
