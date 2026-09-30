@@ -16,7 +16,7 @@ const resendingId = ref(null)
 const statusOptions = [
   { label: 'Pending', value: 'pending' },
   { label: 'In Review', value: 'in_review' },
-  { label: 'Quoted', value: 'quoted' },
+  { label: 'Schedule', value: 'schedule' },
   { label: 'Closed', value: 'closed' },
   { label: 'Cancelled', value: 'cancelled' },
 ]

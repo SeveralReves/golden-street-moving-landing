@@ -203,7 +203,7 @@ Borders are used sparingly and only where a hard edge earns its place: a 1px bla
 - Slick-powered card carousel. Circular white prev/next arrow buttons (soft shadow, subtle dark tint on hover) and pill-style dot indicators — inactive dots are small gray circles; the active dot elongates to a 16px gold pill.
 
 ### Status Chips (dashboard only)
-- Small uppercase pill labels (`10px` radius-ish pill, `5px 10px` padding) that use functional, non-brand colors keyed to lead status: pending=red, in_review=blue, quoted=aqua, closed=green, cancelled=gray/faded. These intentionally sit outside the gold/navy palette — they're a status-signaling system for internal staff, not a brand surface, and shouldn't be reharmonized to gold/navy.
+- Small uppercase pill labels (`10px` radius-ish pill, `5px 10px` padding) that use functional, non-brand colors keyed to lead status: pending=red, in_review=blue, schedule=aqua, closed=green, cancelled=gray/faded. These intentionally sit outside the gold/navy palette — they're a status-signaling system for internal staff, not a brand surface, and shouldn't be reharmonized to gold/navy.
 
 ## Do's and Don'ts
 

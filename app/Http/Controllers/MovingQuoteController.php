@@ -169,7 +169,7 @@ class MovingQuoteController extends Controller
     {
         // Validamos solo el status, porque es lo que viene del modal
         $data = $request->validate([
-            'status' => 'required|string|in:pending,in_review,quoted,closed,cancelled',
+            'status' => 'required|string|in:pending,in_review,schedule,closed,cancelled',
         ]);
 
         $movingQuote->status = $data['status'];

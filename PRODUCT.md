@@ -12,7 +12,7 @@ Primary: local Atlanta-area (Georgia) households and small businesses arranging 
 
 ## Product Purpose
 
-A marketing site with an embedded booking flow for Golden Street Moving, a moving company. It exists to convert visitors into qualified leads through a quote-request form, and to give the internal team a dashboard to track each lead from first contact through completion. Success is a lead that moves cleanly through the pipeline (pending → in_review → quoted → closed) without losing any detail captured at submission.
+A marketing site with an embedded booking flow for Golden Street Moving, a moving company. It exists to convert visitors into qualified leads through a quote-request form, and to give the internal team a dashboard to track each lead from first contact through completion. Success is a lead that moves cleanly through the pipeline (pending → in_review → schedule → closed) without losing any detail captured at submission.
 
 ## Positioning
 
@@ -22,7 +22,7 @@ Care & reliability — fully insured moves, on-time service, and a trained, prof
 
 - Public marketing page collects leads via `Booking.vue` (embedded through `section-booking.blade.php`), posting to `POST /api/moving-quotes`.
 - `MovingQuoteController::store` validates and saves the lead, then `ResendService` emails a notification to the operations inbox.
-- Internal admin dashboard (`/dashboard`, behind `auth`+`verified`) shows all leads in `BookingTable.vue`; staff move each lead through `pending → in_review → quoted → closed/cancelled` via a status modal.
+- Internal admin dashboard (`/dashboard`, behind `auth`+`verified`) shows all leads in `BookingTable.vue`; staff move each lead through `pending → in_review → schedule → closed/cancelled` via a status modal.
 - Contact channels advertised on-site: phone/WhatsApp +1 (770) 589-9512, email infogoldenstreets@gmail.com, Instagram @goldenstreets_moving.
 - `GET /run-maintenance` is a key-gated deploy hook (runs migrations/seeders on hosting without shell access) — not a user-facing route.
 

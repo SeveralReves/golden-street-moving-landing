@@ -34,7 +34,7 @@ El formulario hace `POST /api/moving-quotes`.
 
 - `DashboardController::index` (ruta `/dashboard`, middleware `auth`+`verified`) carga todas las `MovingQuote` y las pasa a la vista `resources/views/dashboard.blade.php`.
 - `BookingTable.vue` (`data-vue="BookingTable"`) renderiza la tabla, con un modal para ver el detalle de una cotización y cambiar su `status`.
-- Al guardar, hace `PUT /api/moving-quotes/{movingQuote}` → `MovingQuoteController::update`, que valida `status` contra `pending|in_review|quoted|closed|cancelled` y lo persiste.
+- Al guardar, hace `PUT /api/moving-quotes/{movingQuote}` → `MovingQuoteController::update`, que valida `status` contra `pending|in_review|schedule|closed|cancelled` y lo persiste.
 
 ## Nota sobre autorización
 
