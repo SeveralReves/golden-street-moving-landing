@@ -98,7 +98,7 @@
       "kind": "chip",
       "refersTo": "chip-status",
       "description": "Dashboard-only lead-status pill. Functional, non-brand colors keyed to pipeline stage — intentionally outside the gold/navy palette.",
-      "html": "<span class=\"ds-chip ds-chip--quoted\">Quoted</span>",
+      "html": "<span class=\"ds-chip ds-chip--schedule\">Schedule</span>",
       "css": ".ds-chip { padding: 5px 10px; border-radius: 10px; background-color: #e5e7eb; text-transform: uppercase; font-size: 12px; font-weight: 700; font-family: 'Inter', sans-serif; display: inline-block; } .ds-chip--pending { background-color: red; color: #fff; } .ds-chip--in_review { background-color: blue; color: #fff; } .ds-chip--quoted { background-color: aqua; } .ds-chip--closed { background-color: green; color: #fff; } .ds-chip--cancelled { background-color: #ccc; opacity: 0.4; }"
     }
   ],
