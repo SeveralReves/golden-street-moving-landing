@@ -257,7 +257,7 @@
 
                 <tr>
                     <td style="padding:0 24px 24px;">
-                        <a href="{{ route('dashboard') }}#quote-{{ $quote->id }}"
+                        <a href="{{ route('dashboard.leads') }}#quote-{{ $quote->id }}"
                            style="display:inline-block; background-color:#1b1b1b; color:#ffffff; text-decoration:none; padding:10px 18px; border-radius:6px; font-size:13px; font-weight:bold;">
                             View this lead in the admin dashboard
                         </a>

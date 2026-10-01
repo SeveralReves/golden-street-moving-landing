@@ -27,6 +27,7 @@ Route::get('/legals', function () {
 Route::get('/', [PageController::class, 'home']);
 
 Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/leads',[DashboardController::class, 'leads'])->middleware(['auth', 'verified'])->name('dashboard.leads');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/calendar', [MoveEventController::class, 'calendar'])->name('dashboard.calendar');
