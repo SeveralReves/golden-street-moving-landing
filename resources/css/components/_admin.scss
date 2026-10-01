@@ -1,0 +1,200 @@
+@use '../base' as *;
+
+// Admin panel shell + dashboard overview
+$admin-bg: #f3f5f9;
+$admin-border: #e4e8ef;
+$admin-text: #0d253e;
+$admin-muted: #6b7a8d;
+$admin-sidebar-w: 240px;
+
+[x-cloak] { display: none !important; }
+
+.admin {
+  min-height: 100vh;
+  background: $admin-bg;
+  color: $admin-text;
+
+  &__sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 40;
+    width: $admin-sidebar-w;
+    display: flex;
+    flex-direction: column;
+    background: $secondary;
+    color: #fff;
+    padding: 16px 12px;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+
+    &.is-open { transform: none; }
+  }
+
+  &__brand {
+    display: block;
+    padding: 0 4px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 16px;
+
+    img { width: 100%; height: auto; display: block; }
+  }
+
+  &__nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    transition: background 0.15s, color 0.15s;
+
+    &:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+    &.is-active { background: $primary; color: $secondary; font-weight: 600; }
+  }
+
+  &__nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+  &__user {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 14px 6px 0;
+    font-size: 13px;
+  }
+  &__user-info { display: flex; flex-direction: column; margin-bottom: 8px; min-width: 0; }
+  &__user-name { font-weight: 600; }
+  &__user-email { color: rgba(255, 255, 255, 0.55); font-size: 12px; overflow: hidden; text-overflow: ellipsis; }
+  &__user-actions {
+    display: flex;
+    gap: 14px;
+    a, button { color: $primary; font-size: 12px; font-weight: 600; background: none; padding: 0; cursor: pointer; }
+    a:hover, button:hover { text-decoration: underline; }
+  }
+
+  &__backdrop { position: fixed; inset: 0; z-index: 30; background: rgba(5, 23, 43, 0.5); }
+
+  &__main { min-width: 0; }
+
+  &__topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 20px 4px;
+  }
+  &__burger {
+    padding: 8px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid $admin-border;
+    cursor: pointer;
+  }
+  &__title { font-size: 22px; font-weight: 700; line-height: 1.2; color: $admin-text; margin: 0; }
+  &__subtitle { font-size: 13px; color: $admin-muted; margin: 2px 0 0; }
+
+  &__content { padding: 12px 20px 32px; display: flex; flex-direction: column; gap: 20px; }
+
+  // The legacy pages (calendar, pricing, content, profile) bring their own
+  // max-w-7xl wrappers; drop their vertical padding inside the shell.
+  &__content > div > .py-12,
+  &__content > div > .py-8,
+  &__content > .py-12,
+  &__content > .py-8 { padding-top: 0; padding-bottom: 0; }
+  &__content > div > div > .max-w-7xl,
+  &__content > div > .max-w-7xl,
+  &__content > .max-w-7xl { max-width: none; padding-left: 0; padding-right: 0; }
+
+  &__stats { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+
+  &__stat, &__card {
+    background: #fff;
+    border: 1px solid $admin-border;
+    border-radius: 14px;
+  }
+  &__stat { padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+  &__stat-label { font-size: 12.5px; color: $admin-muted; }
+  &__stat-value { font-size: 30px; font-weight: 700; line-height: 1.1; }
+  &__stat-delta {
+    font-size: 12px; font-weight: 600; color: #1f8a4c;
+    &.is-down { color: #c2410c; }
+    &.is-neutral { color: $admin-muted; font-weight: 500; }
+  }
+
+  &__grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+
+  &__card { overflow: hidden; }
+  &__card-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; border-bottom: 1px solid $admin-border;
+    h2 { font-size: 15px; font-weight: 700; margin: 0; }
+    a { font-size: 12px; font-weight: 600; color: #a38b00; &:hover { text-decoration: underline; } }
+  }
+  &__empty { padding: 28px 20px; color: $admin-muted; font-size: 14px; }
+
+  &__table-scroll { overflow-x: auto; }
+  &__table {
+    width: 100%; border-collapse: collapse; font-size: 13.5px;
+    th {
+      text-align: left; padding: 10px 20px; background: #f8f9fc;
+      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: $admin-muted; font-weight: 600;
+    }
+    td { padding: 14px 20px; border-top: 1px solid $admin-border; vertical-align: top; }
+    tbody tr:first-child td { border-top: 0; }
+  }
+  &__client { display: block; font-weight: 600; &:hover { text-decoration: underline; } }
+  &__route { display: block; }
+  &__muted { display: block; font-size: 12px; color: $admin-muted; }
+  &__truncate { max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  &__chip {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    font-size: 11.5px; font-weight: 600; background: #eef1f6; color: $admin-muted; white-space: nowrap;
+    &--pending { background: #fdf6d3; color: #8a7400; }
+    &--in_review { background: #e3ecf8; color: #1d4b80; }
+    &--schedule { background: #dff3e7; color: #1f7a45; }
+    &--closed { background: #eef1f6; color: #4b5b6e; }
+    &--cancelled { background: #fbe4e0; color: #b3392a; }
+  }
+
+  &__agenda-day {
+    margin: 0; padding: 10px 20px; background: #f8f9fc; border-top: 1px solid $admin-border;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: $admin-muted;
+    &:first-of-type { border-top: 0; }
+  }
+  &__empty--compact { padding: 16px 20px; }
+
+  &__agenda-item {
+    display: flex; gap: 16px; padding: 14px 20px; border-top: 1px solid $admin-border;
+    strong { display: block; font-size: 14px; }
+  }
+  &__agenda-time { min-width: 68px; font-size: 12.5px; font-weight: 700; color: #a38b00; }
+  &__tag {
+    display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 6px;
+    background: #eef1f6; font-size: 11.5px; font-weight: 600;
+  }
+
+  &__chart { display: flex; align-items: flex-end; gap: 12px; height: 220px; padding: 20px 20px 14px; }
+  &__bar {
+    flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px;
+    &-value { font-size: 12px; font-weight: 700; }
+    &-fill {
+      width: min(100%, 38px); background: $primary; border-radius: 6px 6px 0 0;
+      flex: 0 0 auto;
+    }
+    &.is-current &-fill { background: $secondary; }
+    &-label { font-size: 11.5px; color: $admin-muted; }
+  }
+}
+
+@media (min-width: 1024px) {
+  .admin {
+    &__sidebar { transform: none; }
+    &__backdrop { display: none !important; }
+    &__burger { display: none; }
+    &__main { margin-left: $admin-sidebar-w; }
+    &__topbar { padding: 28px 32px 4px; }
+    &__content { padding: 16px 32px 40px; }
+    &__grid { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  }
+}

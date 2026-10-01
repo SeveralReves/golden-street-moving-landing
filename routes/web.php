@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MovingQuoteController;
+use App\Http\Controllers\MoveEventController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContentSectionController;
 use App\Http\Controllers\PricingSettingController;
@@ -26,6 +27,15 @@ Route::get('/legals', function () {
 Route::get('/', [PageController::class, 'home']);
 
 Route::get('/dashboard',[DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/leads',[DashboardController::class, 'leads'])->middleware(['auth', 'verified'])->name('dashboard.leads');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard/calendar', [MoveEventController::class, 'calendar'])->name('dashboard.calendar');
+    Route::get('/api/move-events', [MoveEventController::class, 'index']);
+    Route::post('/api/move-events', [MoveEventController::class, 'store']);
+    Route::put('/api/move-events/{moveEvent}', [MoveEventController::class, 'update']);
+    Route::delete('/api/move-events/{moveEvent}', [MoveEventController::class, 'destroy']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

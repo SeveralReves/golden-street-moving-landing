@@ -11,6 +11,7 @@
 @use 'components/cards' as *;
 @use 'components/banner' as *;
 @use 'components/error' as *;
+@use 'components/admin' as *;
 
 /* Añade espacio entre slides */
 .slick-slide {
