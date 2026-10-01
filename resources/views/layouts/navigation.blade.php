@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('dashboard.calendar')" :active="request()->routeIs('dashboard.calendar')">
+                        {{ __('Calendar') }}
+                    </x-nav-link>
                     @if (Auth::user()->role === 'admin')
                         <x-nav-link :href="route('dashboard.content')" :active="request()->routeIs('dashboard.content')">
                             {{ __('Content') }}
@@ -77,6 +80,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dashboard.calendar')" :active="request()->routeIs('dashboard.calendar')">
+                {{ __('Calendar') }}
             </x-responsive-nav-link>
             @if (Auth::user()->role === 'admin')
                 <x-responsive-nav-link :href="route('dashboard.content')" :active="request()->routeIs('dashboard.content')">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MovingQuote extends Model
 {
@@ -74,4 +75,9 @@ class MovingQuote extends Model
         'estimate_hours',
         'estimate_breakdown',
     ];
+
+    public function moveEvents(): HasMany
+    {
+        return $this->hasMany(MoveEvent::class);
+    }
 }
