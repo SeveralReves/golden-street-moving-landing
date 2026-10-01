@@ -33,10 +33,16 @@ class DashboardController extends Controller
 
         $recentQuotes = MovingQuote::latest()->limit(6)->get();
 
-        $agenda = MoveEvent::active()
-            ->whereBetween('start_at', [$today, $today->copy()->endOfDay()])
+        $upcoming = MoveEvent::active()
+            ->where('start_at', '>=', $today)
             ->orderBy('start_at')
+            ->limit(10)
             ->get();
+
+        $agendaToday = $upcoming->filter(fn ($e) => $e->start_at->isSameDay($today))->values();
+        $agendaNext = $upcoming
+            ->reject(fn ($e) => $e->start_at->isSameDay($today))
+            ->groupBy(fn ($e) => $e->start_at->format('Y-m-d'));
 
         $weekly = collect(range(self::CHART_WEEKS - 1, 0))->map(function ($ago) use ($weekStart) {
             $start = $weekStart->copy()->subWeeks($ago);
@@ -59,7 +65,8 @@ class DashboardController extends Controller
                 'monthEstimate' => (float) $monthEstimate,
             ],
             'recentQuotes' => $recentQuotes,
-            'agenda' => $agenda,
+            'agendaToday' => $agendaToday,
+            'agendaNext' => $agendaNext,
             'weekly' => $weekly,
             'weeklyMax' => max(1, $weekly->max('count')),
         ]);

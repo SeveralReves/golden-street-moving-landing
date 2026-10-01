@@ -83,22 +83,23 @@
 
         <section class="admin__card">
             <header class="admin__card-head">
-                <h2>{{ __('Today’s schedule') }}</h2>
+                <h2>{{ __('Next schedules') }}</h2>
                 <a href="{{ route('dashboard.calendar') }}">{{ __('Open calendar') }} →</a>
             </header>
 
-            @forelse ($agenda as $event)
-                <div class="admin__agenda-item">
-                    <span class="admin__agenda-time">{{ $event->start_at->format('g:i A') }}</span>
-                    <div>
-                        <strong>{{ $event->customer_name ?: $event->title }}</strong>
-                        <span class="admin__muted admin__truncate">{{ $event->origin_address }} → {{ $event->destination_address }}</span>
-                        <span class="admin__tag">{{ $event->crew_size }} {{ __('movers') }}</span>
-                    </div>
-                </div>
+            <h3 class="admin__agenda-day">{{ __('Today') }}</h3>
+            @forelse ($agendaToday as $event)
+                @include('partials.agenda-item', ['event' => $event])
             @empty
-                <p class="admin__empty">{{ __('Nothing scheduled today.') }}</p>
+                <p class="admin__empty admin__empty--compact">{{ __('Nothing scheduled today.') }}</p>
             @endforelse
+
+            @foreach ($agendaNext as $date => $events)
+                <h3 class="admin__agenda-day">{{ \Illuminate\Support\Carbon::parse($date)->isTomorrow() ? __('Tomorrow') : \Illuminate\Support\Carbon::parse($date)->format('l, M j') }}</h3>
+                @foreach ($events as $event)
+                    @include('partials.agenda-item', ['event' => $event])
+                @endforeach
+            @endforeach
         </section>
     </div>
 
