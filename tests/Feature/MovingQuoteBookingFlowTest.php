@@ -23,6 +23,23 @@ class MovingQuoteBookingFlowTest extends TestCase
         Config::set('services.resend.api_key', null);
     }
 
+    public function test_the_lead_email_runs_after_the_response_and_is_recorded(): void
+    {
+        $id = $this->postJson('/api/moving-quotes', [
+            'name' => 'Jane Doe',
+            'phone' => '7705551234',
+            'schedule' => 'morning',
+            'date_flexible' => true,
+            'origin_zip' => '30303',
+            'destination_zip' => '30309',
+        ])->assertCreated()->json('quote.id');
+
+        // With no API key the send fails, but it must have been attempted and recorded.
+        $quote = MovingQuote::find($id);
+        $this->assertNotNull($quote->email_sent_at);
+        $this->assertFalse($quote->email_sent);
+    }
+
     public function test_step_one_saves_a_recoverable_lead(): void
     {
         $response = $this->postJson('/api/moving-quotes', [

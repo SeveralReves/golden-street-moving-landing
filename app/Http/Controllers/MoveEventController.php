@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MoveEvent;
 use App\Models\MovingQuote;
+use App\Services\MoveNotifier;
 use App\Services\SchedulingService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Illuminate\Validation\Rule;
 
 class MoveEventController extends Controller
 {
-    public function __construct(private SchedulingService $scheduling)
+    public function __construct(private SchedulingService $scheduling, private MoveNotifier $notifier)
     {
     }
 
@@ -58,6 +59,7 @@ class MoveEventController extends Controller
 
         $event = MoveEvent::create($data);
         $this->scheduling->syncQuoteStatus($event->moving_quote_id);
+        $this->notifier->handleScheduled($event);
 
         return response()->json(['event' => $this->payload($event->fresh())], 201);
     }
@@ -77,12 +79,21 @@ class MoveEventController extends Controller
         }
 
         $previousQuoteId = $moveEvent->moving_quote_id;
-        $moveEvent->update($data);
+        $moveEvent->fill($data);
+
+        // A new date means the old reminder no longer applies.
+        if ($moveEvent->isDirty('start_at')) {
+            $moveEvent->reminder_sent_at = null;
+        }
+
+        $moveEvent->save();
 
         $this->scheduling->syncQuoteStatus($moveEvent->moving_quote_id);
         if ($previousQuoteId !== $moveEvent->moving_quote_id) {
             $this->scheduling->syncQuoteStatus($previousQuoteId);
         }
+
+        $this->notifier->handleScheduled($moveEvent);
 
         return response()->json(['event' => $this->payload($moveEvent->fresh())]);
     }

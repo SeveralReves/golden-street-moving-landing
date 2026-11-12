@@ -2,6 +2,7 @@
 import { ref, reactive, computed, onMounted, nextTick } from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import AdminLoader from './AdminLoader.vue'
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -31,6 +32,7 @@ const sidebarRef = ref(null)
 const pendingQuotes = ref([...props.quotes])
 const search = ref('')
 const saving = ref(false)
+const calendarLoading = ref(true)
 const modalOpen = ref(false)
 
 const filteredQuotes = computed(() => {
@@ -209,6 +211,7 @@ const calendarOptions = {
     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
   },
   height: 'auto',
+  loading: (isLoading) => { calendarLoading.value = isLoading },
   nowIndicator: true,
   selectable: true,
   editable: true,
@@ -309,7 +312,10 @@ const formatDate = (d) => (d ? new Date(`${d}T00:00:00`).toLocaleDateString(unde
             + New event
           </button>
         </div>
-        <FullCalendar ref="calendarRef" :options="calendarOptions" />
+        <div class="admin__loading-host">
+          <AdminLoader v-if="calendarLoading" />
+          <FullCalendar ref="calendarRef" :options="calendarOptions" />
+        </div>
       </section>
     </div>
 

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import { Field, Form, ErrorMessage } from 'vee-validate'
 import * as Yup from 'yup'
 import DatePicker from 'vue-datepicker-next'
@@ -19,6 +19,16 @@ const CONTACT_PHONE = { display: '(770) 589-9512', tel: '+17705899512' }
 
 // Step system: 1 = contact & date, 2 = size of the move, 3 = confirmation
 const step = ref(1)
+const rootRef = ref(null)
+
+// Every step swaps the card's height, which can leave the visitor looking at
+// the middle of the page (or below the card). Bring the top of the booking
+// component back into view whenever the step changes.
+watch(step, async () => {
+  await nextTick()
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  rootRef.value?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
+})
 const quoteId = ref(null)
 const step1FormRef = ref()
 const step2FormRef = ref()
@@ -202,7 +212,7 @@ function goBackToStep1() {
 </script>
 
 <template>
-  <div class="booking">
+  <div class="booking" ref="rootRef">
     <div class="booking__container container">
       <div class="booking__card">
         <!-- Header -->

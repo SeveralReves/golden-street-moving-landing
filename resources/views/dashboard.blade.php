@@ -69,7 +69,7 @@
                                         <span class="admin__route">
                                             {{ collect([ucfirst((string) $quote->move_type), $quote->bedrooms ? $quote->bedrooms.' bd' : null])->filter()->implode(' · ') }}
                                         </span>
-                                        <span class="admin__muted admin__truncate">{{ $quote->origin_address }} → {{ $quote->destination_address }}</span>
+                                        <span class="admin__muted admin__truncate">{{ $quote->origin_zip ?: $quote->origin_address }} → {{ $quote->destination_zip ?: $quote->destination_address }}</span>
                                     </td>
                                     <td>{{ $quote->estimate_total ? '$'.number_format($quote->estimate_total, 0) : '—' }}</td>
                                     <td><span class="admin__chip admin__chip--{{ $quote->status }}">{{ $statusLabels[$quote->status] ?? $quote->status }}</span></td>

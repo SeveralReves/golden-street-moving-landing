@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/api/moving-quotes', [MovingQuoteController::class, 'index']);
+    Route::get('/api/moving-quotes/{movingQuote}', [MovingQuoteController::class, 'show']);
     Route::put('/api/moving-quotes/{movingQuote}', [MovingQuoteController::class, 'update']);
     Route::post('/api/moving-quotes/{movingQuote}/resend-email', [MovingQuoteController::class, 'resendEmail']);
 });
