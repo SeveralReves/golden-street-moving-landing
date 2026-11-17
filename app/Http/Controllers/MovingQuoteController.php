@@ -29,6 +29,28 @@ class MovingQuoteController extends Controller
     }
 
     /**
+     * The Resend call can take several seconds, so it runs once the response
+     * has been sent instead of making the visitor wait on it. The lead's
+     * email_sent / email_sent_at fields are updated when it finishes.
+     */
+    private function sendLeadEmailAfterResponse(MovingQuote $quote): void
+    {
+        $id = $quote->id;
+
+        dispatch(function () use ($id) {
+            $lead = MovingQuote::find($id);
+
+            if (! $lead) {
+                return;
+            }
+
+            $lead->email_sent = ResendService::sendLead($lead);
+            $lead->email_sent_at = now();
+            $lead->save();
+        })->afterResponse();
+    }
+
+    /**
      * Step 1 of the booking form: contact info + date.
      * Saved immediately so the lead is recoverable even if the visitor
      * never reaches step 2.
@@ -65,15 +87,10 @@ class MovingQuoteController extends Controller
             'status' => 'pending',
         ]);
 
-        $sent = ResendService::sendLead($quote);
-
-        $quote->email_sent = $sent;
-        $quote->email_sent_at = now();
-        $quote->save();
+        $this->sendLeadEmailAfterResponse($quote);
 
         return response()->json([
             'message' => 'Quote request saved successfully.',
-            'email_sent' => $sent,
             'quote' => $this->publicQuotePayload($quote),
         ], 201);
     }
@@ -152,17 +169,25 @@ class MovingQuoteController extends Controller
         $movingQuote->estimate_breakdown = $estimate;
         $movingQuote->save();
 
-        $sent = ResendService::sendLead($movingQuote);
-
-        $movingQuote->email_sent = $sent;
-        $movingQuote->email_sent_at = now();
-        $movingQuote->save();
+        $this->sendLeadEmailAfterResponse($movingQuote);
 
         return response()->json([
             'message' => 'Quote request completed successfully.',
-            'email_sent' => $sent,
             'quote' => $this->publicQuotePayload($movingQuote),
         ]);
+    }
+
+    /** Paginated lead list for the admin table. */
+    public function index(Request $request)
+    {
+        $perPage = min(max((int) $request->query('per_page', 15), 1), 100);
+
+        return response()->json(MovingQuote::latest()->orderByDesc('id')->paginate($perPage));
+    }
+
+    public function show(MovingQuote $movingQuote)
+    {
+        return response()->json($movingQuote);
     }
 
     public function update(Request $request, MovingQuote $movingQuote)

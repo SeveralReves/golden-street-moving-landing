@@ -1,6 +1,9 @@
 @use '../base' as *;
 
 .booking {
+  // Keeps the card clear of the fixed header when scrolled into view.
+  scroll-margin-top: 100px;
+
   &__card {
     width: 100%;
     max-width: 890px;
@@ -70,7 +73,7 @@
     &--subtext {
       font-size: 0.95rem;
       margin-bottom: 20px;
-      opacity: 0.75;
+      color: rgba(255, 255, 255, 0.8);
     }
     &--actions {
       display: flex;
@@ -242,6 +245,7 @@
     gap: 12px;
     &--title {
       font-size: 1rem;
+      color: $white;
     }
     &--loader {
       border-radius: 10px;
@@ -262,10 +266,10 @@
     border: 1px solid #e5e7eb;
   }
   &__table {
-    min-width: 980px;
+    min-width: 1340px;
     &--row {
       display: grid;
-      grid-template-columns: 60px 170px 1fr 100px 1fr 1fr 110px 150px 110px;
+      grid-template-columns: 60px 160px minmax(200px, 1fr) 125px 100px 110px 130px 110px 130px 100px;
       column-gap: 12px;
       align-items: center;
       border-bottom: 1px solid #eef1f4;
@@ -307,7 +311,9 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
+        min-width: 0;
         overflow: hidden;
+        overflow-wrap: anywhere;
         text-overflow: ellipsis;
         // white-space: nowrap;
       }

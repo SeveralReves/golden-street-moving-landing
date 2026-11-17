@@ -198,3 +198,38 @@ $admin-sidebar-w: 240px;
     &__grid { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
   }
 }
+
+// Loader + pagination (leads table, calendar)
+.admin__loading-host { position: relative; min-height: 120px; }
+.admin__loader {
+  position: absolute; inset: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+}
+.admin__spinner {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 3px solid $admin-border; border-top-color: $secondary;
+  animation: admin-spin 0.7s linear infinite;
+}
+@keyframes admin-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .admin__spinner { animation-duration: 1.6s; } }
+.admin__sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.admin__pager {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+  padding-top: 16px; font-size: 13px; color: $admin-muted;
+
+  &-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+  &-gap { padding: 0 4px; }
+  button {
+    min-width: 34px; height: 34px; padding: 0 10px;
+    border: 1px solid $admin-border; border-radius: 8px; background: #fff;
+    color: $admin-text; font-size: 13px; cursor: pointer;
+    &:hover:not(:disabled) { background: $admin-bg; }
+    &:disabled { opacity: 0.45; cursor: not-allowed; }
+    &.is-current { background: $secondary; border-color: $secondary; color: #fff; font-weight: 600; }
+  }
+}

@@ -1,12 +1,17 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import AdminPagination from './AdminPagination.vue'
+import AdminLoader from './AdminLoader.vue'
 import axios from 'axios' // si lo tienes global puedes quitar esta línea
 import Swal from 'sweetalert2' 
 
-// Props
-const props = defineProps({
-  quotes: { type: Array, default: () => [] },
-})
+const PER_PAGE = 15
+
+const quotes = ref([])
+const loading = ref(true)
+const loadError = ref(false)
+const pagination = ref({ current_page: 1, last_page: 1, total: 0, per_page: PER_PAGE })
+const saving = ref(false)
 
 const viewModal = ref(false)
 const item = ref({});
@@ -44,7 +49,28 @@ const handleKeyup = (e) => {
   }
 }
 
+const loadPage = async (page = 1) => {
+  loading.value = true
+  loadError.value = false
+  try {
+    const { data } = await axios.get('/api/moving-quotes', { params: { page, per_page: PER_PAGE } })
+    quotes.value = data.data
+    pagination.value = {
+      current_page: data.current_page,
+      last_page: data.last_page,
+      total: data.total,
+      per_page: data.per_page,
+    }
+  } catch (error) {
+    console.error(error)
+    loadError.value = true
+  } finally {
+    loading.value = false
+  }
+}
+
 const saveStatus = async () => {
+  saving.value = true
   try {
     const url = `/api/moving-quotes/${item.value.id}`
 
@@ -76,6 +102,8 @@ const saveStatus = async () => {
         text: error.response?.data?.message || 'The status could not be updated.',
       })
     }
+  } finally {
+    saving.value = false
   }
 }
 
@@ -115,16 +143,20 @@ const resendEmail = async (quote) => {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   window.addEventListener('keyup', handleKeyup)
 
   // Supports the "View this lead" link from the lead notification email
-  // (/dashboard#quote-123) by opening that lead's modal directly.
+  // (/dashboard#quote-123) by opening that lead's modal directly. The lead may
+  // not be on the first page, so it is fetched on its own.
   const match = window.location.hash.match(/^#quote-(\d+)$/)
   if (match) {
-    const quote = props.quotes.find((q) => String(q.id) === match[1])
-    if (quote) viewItem(quote)
+    axios.get(`/api/moving-quotes/${match[1]}`)
+      .then(({ data }) => viewItem(data))
+      .catch(() => {})
   }
+
+  await loadPage(1)
 })
 onBeforeUnmount(() => {
   window.removeEventListener('keyup', handleKeyup)
@@ -138,15 +170,17 @@ onBeforeUnmount(() => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <div class="booking__table-wrapper">
+                        <div class="booking__table-wrapper admin__loading-host">
+                            <AdminLoader v-if="loading" />
                             <div class="booking__table">
                                 <div class="booking__table--row booking__table--row--head">
                                     <div class="booking__table--head-item">ID</div>
                                     <div class="booking__table--head-item">Name</div>
                                     <div class="booking__table--head-item">Email</div>
+                                    <div class="booking__table--head-item">Phone</div>
                                     <div class="booking__table--head-item">Date</div>
-                                    <div class="booking__table--head-item">Origin</div>
-                                    <div class="booking__table--head-item">Destination</div>
+                                    <div class="booking__table--head-item">Origin ZIP</div>
+                                    <div class="booking__table--head-item">Destination ZIP</div>
                                     <div class="booking__table--head-item">Status</div>
                                     <div class="booking__table--head-item">Email status</div>
                                     <div class="booking__table--head-item">Created At</div>
@@ -167,16 +201,19 @@ onBeforeUnmount(() => {
                                         </button>
                                     </div>
                                     <div class="booking__table--body-item">
-                                        {{quote.email}}
+                                        {{quote.email || '-'}}
                                     </div>
                                     <div class="booking__table--body-item">
-                                        {{getDate(quote.preferred_date)}}
+                                        {{quote.phone || '-'}}
                                     </div>
                                     <div class="booking__table--body-item">
-                                        {{quote.origin_address}}
+                                        {{quote.date_flexible ? 'Flexible' : getDate(quote.preferred_date)}}
                                     </div>
                                     <div class="booking__table--body-item">
-                                        {{quote.destination_address}}
+                                        {{quote.origin_zip || quote.origin_address || '-'}}
+                                    </div>
+                                    <div class="booking__table--body-item">
+                                        {{quote.destination_zip || quote.destination_address || '-'}}
                                     </div>
                                     <div class="booking__table--body-item">
                                         <span class="booking__table--body-chip" :class="`booking__table--body-chip--${quote.status}`">
@@ -199,8 +236,21 @@ onBeforeUnmount(() => {
                                         {{getDate(quote.created_at)}}
                                     </div>
                                 </div>
+                                <p v-if="!loading && loadError" class="admin__empty">
+                                    The leads could not be loaded.
+                                    <button class="booking__table--body-resend" @click="loadPage(pagination.current_page)">Retry</button>
+                                </p>
+                                <p v-else-if="!loading && !quotes.length" class="admin__empty">No leads yet.</p>
                             </div>
                         </div>
+                        <AdminPagination
+                            :page="pagination.current_page"
+                            :last-page="pagination.last_page"
+                            :total="pagination.total"
+                            :per-page="pagination.per_page"
+                            :disabled="loading"
+                            @change="loadPage"
+                        />
                     </div>
                 </div>
             </div>
@@ -355,7 +405,7 @@ onBeforeUnmount(() => {
                 </div>
 
                 <div class="booking__modal--footer">
-                    <button class="button__primary" @click="saveStatus" :disabled="item.status == newStatus">Save</button>
+                    <button class="button__primary" @click="saveStatus" :disabled="saving || item.status == newStatus">{{ saving ? 'Saving…' : 'Save' }}</button>
                     <button class="booking__modal--button" @click="closeItem">Close</button>
                 </div>
             </div>

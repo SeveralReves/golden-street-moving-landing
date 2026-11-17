@@ -74,8 +74,6 @@ class DashboardController extends Controller
 
     public function leads(Request $request)
     {
-        $quotes = MovingQuote::all();
-
-        return view('dashboard-leads', compact('quotes'));
+        return view('dashboard-leads');
     }
 }

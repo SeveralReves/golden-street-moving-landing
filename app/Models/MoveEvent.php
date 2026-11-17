@@ -28,12 +28,16 @@ class MoveEvent extends Model
         'crew_size',
         'status',
         'notes',
+        'confirmation_sent_at',
+        'reminder_sent_at',
     ];
 
     protected $casts = [
         'start_at' => 'datetime',
         'end_at' => 'datetime',
         'crew_size' => 'integer',
+        'confirmation_sent_at' => 'datetime',
+        'reminder_sent_at' => 'datetime',
     ];
 
     public function quote(): BelongsTo
